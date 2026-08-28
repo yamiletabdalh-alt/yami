@@ -51,7 +51,7 @@ addEventListener("scroll", function () {
 }, { passive: true });
 
 // ===== Palabra rotativa del titular =====
-var palabras = ["convierten", "fidelizan", "cargan al instante", "son accesibles", "cuidan al cliente"];
+var palabras = ["optimizo", "diseño", "hago crecer", "automatizo"];
 var rot = document.getElementById("rotativo");
 var idx = 0;
 rot.style.transition = "opacity .2s ease";
@@ -122,10 +122,10 @@ pintarProyectos("todos");
 
 // ===== Opiniones =====
 var opiniones = [
-  { texto: "Redujo nuestros tickets a la mitad. El buscador del centro de ayuda es rapidísimo.", nombre: "Marta Ceballos", rol: "Soporte, SaaS de facturación" },
-  { texto: "El sistema de reservas con recordatorios nos quitó el problema de las ausencias.", nombre: "Diego Fuentes", rol: "Clínica dental" },
-  { texto: "Entrega puntual y, sobre todo, nos formó al equipo para poder mantenerlo solos.", nombre: "Laura Ibáñez", rol: "Escuela de idiomas" },
-  { texto: "Nos montó la tienda y las integraciones de pago sin dramas. Muy recomendable.", nombre: "Sergio Pardo", rol: "Taller de cerámica" },
+  { texto: "Nos hizo la identidad completa y ahora la marca se ve coherente en la web y en redes.", nombre: "Ana Torres", rol: "Centro de bienestar" },
+  { texto: "La web y la agenda me quitaron el lío de reservar por WhatsApp. Ahora todo va solo.", nombre: "Psicóloga colegiada", rol: "Consulta privada" },
+  { texto: "En tres meses el alcance de Instagram se disparó y por fin publico con un plan.", nombre: "Estudio de yoga", rol: "Bienestar" },
+  { texto: "El asistente con IA responde el 60 % de las consultas de la tienda. Un cambio enorme.", nombre: "Sergio Pardo", rol: "Tienda online" },
 ];
 document.getElementById("lista-opiniones").innerHTML = opiniones
   .map(function (o) {
@@ -258,11 +258,11 @@ var wa = document.querySelector(".wa");
 if (cfg.whatsapp) wa.href = "https://wa.me/" + String(cfg.whatsapp).replace(/[^\d]/g, "");
 else if (tieneConfig && wa) wa.remove();
 
-document.querySelectorAll(".site-footer .redes a").forEach(function (a) {
+document.querySelectorAll(".site-footer .redes a[data-red]").forEach(function (a) {
   var url = (cfg.redes || {})[a.dataset.red];
   if (a.dataset.red === "email" && url && url.indexOf("@") > -1 && url.indexOf("mailto:") !== 0) url = "mailto:" + url;
-  if (url) a.href = url;
-  else if (tieneConfig) a.remove();
+  if (url) { a.href = url; a.hidden = false; }
+  else a.remove();
 });
 
 // ===== Botón "volver arriba" =====

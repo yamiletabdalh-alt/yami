@@ -13,9 +13,14 @@ window.CONOCIMIENTO = {
   /* Texto base. Escríbelo en lenguaje natural, como se lo contarías a un
      cliente nuevo. Cuanto más completo, mejor responde la IA. */
   contexto: `
-Yamilet Abdalh es diseñadora y desarrolladora web. Hace sitios y landings,
-tiendas online, aplicaciones web y paneles, y también auditorías de
-accesibilidad y rendimiento. Trabaja en remoto con clientes de cualquier país.
+Yamilet Abdalh trabaja en cuatro áreas: (1) DISEÑO: identidad visual, logos,
+paletas, tipografías y plantillas para redes y documentos; (2) TERAPIAS Y
+BIENESTAR: webs claras y sistemas de reserva de sesiones para consultas de
+psicología y terapeutas, y material digital para pacientes; (3) REDES SOCIALES:
+auditoría, plan de contenidos, diseño de publicaciones y programación
+(Instagram, TikTok); (4) INTELIGENCIA ARTIFICIAL: asistentes con IA para
+atención al cliente y automatización de contenidos.
+Trabaja en remoto con clientes de cualquier país.
 
 PLANES MENSUALES en dólares (cuota pequeña, sin permanencia, alta $0):
 - Esencial: $15/mes. Web de 1 página siempre al día, hosting y dominio
@@ -57,24 +62,27 @@ CÓMO CONTACTAR: desde el formulario de contacto de la propia web. Respuesta en 
     { claves: ["soporte", "mantenimiento", "después de", "garantía", "actualizaciones"],
       respuesta: "Incluye 30 días de correcciones sin coste tras el lanzamiento, y hay planes de mantenimiento mensual opcionales." },
 
-    { claves: ["tecnología", "stack", "wordpress", "react", "astro", "con qué"],
-      respuesta: "Trabaja con HTML, CSS y JavaScript, y con Astro, WordPress a medida o React según lo que necesite el proyecto." },
+    { claves: ["diseño", "logo", "logotipo", "identidad", "marca", "branding", "imagen"],
+      respuesta: "Hace identidad visual completa: logo, colores, tipografías y plantillas para redes y documentos, con un manual de marca sencillo para que el equipo publique sin diseñar de cero." },
 
-    { claves: ["contacto", "hablar", "llamada", "reunión", "cita", "empezar", "contratar"],
-      respuesta: "Escríbele desde el formulario de contacto de esta misma página y te responde en menos de 24 h. La primera llamada de 20 minutos es gratis." },
+    { claves: ["redes", "instagram", "tiktok", "community", "contenido", "publicaciones", "seguidores"],
+      respuesta: "Gestiona y optimiza redes sociales: auditoría de la cuenta, plan de contenidos, diseño de publicaciones y programación. En un caso real, +120 % de alcance y +38 % de seguidores en 3 meses." },
 
-    { claves: ["accesibilidad", "wcag", "lighthouse", "rendimiento", "velocidad", "lento"],
-      respuesta: "Hace auditorías de accesibilidad WCAG AA y mejora de rendimiento. En un caso real subió un medio digital de 62 a 98 en Lighthouse." },
+    { claves: ["ia", "inteligencia artificial", "chatbot", "asistente", "automatizar", "automatización", "chatgpt", "claude"],
+      respuesta: "Integra IA en proyectos reales: asistentes para atención al cliente conectados a tu información, y automatización de contenidos (por ejemplo, de notas de voz a borradores de artículo)." },
 
-    { claves: ["tienda", "ecommerce", "e-commerce", "vender", "pagos", "stripe", "carrito"],
-      respuesta: "Monta tiendas online con pasarela de pago (por ejemplo Stripe) y gestión de stock sencilla. Puedes ver el proyecto de la tienda de cerámica en la sección Proyectos." },
+    { claves: ["terapia", "psicología", "psicologia", "consulta", "paciente", "sesión", "terapeuta"],
+      respuesta: "Trabaja mucho con profesionales del bienestar: webs claras sobre el enfoque terapéutico, reserva de sesiones online con recordatorios y material digital para pacientes." },
 
     { claves: ["reserva", "citas", "agenda", "calendario", "booking"],
-      respuesta: "Desarrolla sistemas de reservas con confirmación y recordatorios automáticos. Un cliente redujo un 55 % las ausencias con uno de ellos." }
+      respuesta: "Desarrolla sistemas de reservas con confirmación y recordatorios automáticos. Una consulta de psicología redujo un 50 % las ausencias con uno de ellos." },
+
+    { claves: ["contacto", "hablar", "llamada", "reunión", "cita", "empezar", "contratar"],
+      respuesta: "Escríbele desde el formulario de contacto de esta misma página y te responde en menos de 24 h. La primera llamada de 20 minutos es gratis." }
   ],
 
   /* Mensajes de la interfaz del asistente */
   saludo: "¡Hola! Soy el asistente de Yamilet 👋 Puedo ayudarte con dudas sobre servicios, precios, plazos y proceso de trabajo. ¿Qué te gustaría saber?",
-  sugerencias: ["¿Cuánto cuesta una web?", "¿Cuánto se tarda?", "¿Cómo son los pagos?", "¿Trabajas en remoto?"],
+  sugerencias: ["¿Cuánto cuestan los planes?", "¿Gestionas redes sociales?", "¿Haces webs para terapias?", "¿Trabajas con IA?"],
   sinRespuesta: "Esa pregunta la responde mejor Yamilet en persona. Déjale tu mensaje en el formulario de contacto de esta página y te contesta en menos de 24 h."
 };

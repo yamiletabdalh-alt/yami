@@ -20,7 +20,8 @@ window.PORTFOLIO_CONFIG = {
 
 
   /* --- DATOS DE CONTACTO QUE SE MUESTRAN EN LA WEB ------------------ */
-  email: "hola@tudominio.com",
+  /* Deja "" y no se muestra nada (el contacto va por el formulario). */
+  email: "",
 
   /* WhatsApp en formato internacional, SIN "+" ni espacios.
      Ej. España: "34600112233".  Déjalo "" para ocultar el botón.     */
@@ -34,17 +35,17 @@ window.PORTFOLIO_CONFIG = {
                   Requiere desplegar la función y añadir tu
                   ANTHROPIC_API_KEY (ver CONFIGURAR.md).               */
   asistente: {
-    ia: true,
+    ia: false,
     endpoint: "/.netlify/functions/asistente"
   },
 
 
-  /* --- REDES (el pie de página) — deja "" las que no uses ---------- */
+  /* --- REDES (el pie de página) — pon la URL o deja "" para ocultar --- */
   redes: {
-    github:    "https://github.com/tu-usuario",
-    linkedin:  "https://linkedin.com/in/tu-usuario",
+    github:    "",
+    linkedin:  "",
     instagram: "",
-    email:     "hola@tudominio.com"
+    email:     ""
   }
 
 };
