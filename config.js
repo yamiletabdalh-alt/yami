@@ -34,7 +34,7 @@ window.PORTFOLIO_CONFIG = {
                   Requiere desplegar la función y añadir tu
                   ANTHROPIC_API_KEY (ver CONFIGURAR.md).               */
   asistente: {
-    ia: false,
+    ia: true,
     endpoint: "/.netlify/functions/asistente"
   },
 

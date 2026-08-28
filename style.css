@@ -232,6 +232,7 @@ main { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem; }
 .plan li { padding-left: 1.4rem; position: relative; color: var(--muted); font-size: 0.9rem; }
 .plan li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
 .plan .btn { margin-top: auto; justify-content: center; }
+.planes-nota { color: var(--muted); font-size: 0.82rem; margin-top: 1.3rem; }
 
 /* ===== Opiniones ===== */
 .opiniones { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; }

@@ -17,20 +17,22 @@ Yamilet Abdalh es diseñadora y desarrolladora web. Hace sitios y landings,
 tiendas online, aplicaciones web y paneles, y también auditorías de
 accesibilidad y rendimiento. Trabaja en remoto con clientes de cualquier país.
 
-SERVICIOS Y PRECIOS DE REFERENCIA en dólares (el precio final se cierra tras una llamada):
-- Landing express: $490. Una página optimizada, formulario y analítica.
-  Entrega en 1 semana. 2 rondas de cambios.
-- Web de soporte: $1,900. Centro de ayuda con buscador, chat en vivo,
-  portal de tickets del cliente y formación del equipo.
-- Proyecto a medida: desde $3,500. Reservas, pagos o integraciones,
-  diseño de sistema propio, encuestas y panel de métricas, mantenimiento opcional.
+PLANES MENSUALES en dólares (cuota pequeña, sin permanencia, alta $0):
+- Esencial: $15/mes. Web de 1 página siempre al día, hosting y dominio
+  gestionados, 1 cambio de contenido al mes, soporte por email en 48 h.
+- Negocio: $35/mes. Hasta 5 páginas, cambios de contenido ilimitados,
+  formulario, analítica y SEO básico, soporte prioritario en 24 h.
+- Pro: $65/mes. Todo lo de Negocio, más tienda/reservas/integraciones,
+  asistente con IA para tus clientes, informe mensual y prioridad máxima.
+También proyectos puntuales con presupuesto a medida (sin suscripción).
 
 PROCESO DE TRABAJO:
 1. Primera llamada gratuita de 20 minutos.
-2. Propuesta con presupuesto fijo en 24-48 horas.
-3. Pago 50 % al arrancar y 50 % a la entrega (a medida se puede fraccionar por hitos).
-4. Entrega en 2-4 semanas según integraciones.
-5. 30 días de correcciones sin coste tras el lanzamiento; planes de mantenimiento opcionales.
+2. Propuesta con el plan recomendado en 24-48 horas.
+3. Los planes mensuales se pagan por adelantado cada mes, sin permanencia.
+   En proyectos puntuales, 50 % al empezar y 50 % a la entrega.
+4. Primera versión publicada en 1-2 semanas; mejoras continuas cada mes.
+5. Soporte incluido en el plan; cancela cuando quieras.
 
 TECNOLOGÍAS: HTML, CSS y JavaScript; Astro, WordPress a medida o React según el proyecto.
 
@@ -40,14 +42,14 @@ CÓMO CONTACTAR: desde el formulario de contacto de la propia web. Respuesta en 
   /* Respuestas rápidas. "claves" son palabras o trozos de frase; si el
      mensaje del cliente contiene alguna, se muestra esa respuesta. */
   faqs: [
-    { claves: ["precio", "cuesta", "cuánto vale", "tarifa", "presupuesto", "coste", "cuanto cuesta"],
-      respuesta: "Los precios de referencia son: Landing express $490, Web de soporte $1,900 y proyectos a medida desde $3,500. El precio final se cierra con presupuesto fijo tras una llamada gratuita." },
+    { claves: ["precio", "cuesta", "cuánto vale", "tarifa", "presupuesto", "coste", "cuanto cuesta", "suscripción", "plan", "mensual"],
+      respuesta: "Trabajo con planes mensuales sin permanencia y con alta gratuita: Esencial $15/mes, Negocio $35/mes y Pro $65/mes. También hago proyectos puntuales con presupuesto a medida." },
 
     { claves: ["tarda", "plazo", "cuánto tiempo", "cuando estará", "duración", "entrega"],
-      respuesta: "Una landing suele estar lista en 1 semana; una web completa, entre 2 y 4 semanas según las integraciones." },
+      respuesta: "La primera versión de tu web se publica en 1-2 semanas, y a partir de ahí se mejora cada mes dentro de tu plan." },
 
-    { claves: ["pago", "pagar", "factura", "anticipo", "señal", "cómo se paga"],
-      respuesta: "El pago es 50 % al arrancar y 50 % a la entrega. En proyectos a medida se puede fraccionar por hitos." },
+    { claves: ["pago", "pagar", "factura", "anticipo", "señal", "cómo se paga", "permanencia", "cancelar"],
+      respuesta: "Los planes mensuales se pagan por adelantado cada mes y no tienen permanencia: cancelas cuando quieras. En proyectos puntuales, 50 % al empezar y 50 % a la entrega." },
 
     { claves: ["remoto", "país", "extranjero", "distancia", "online", "presencial", "idioma"],
       respuesta: "Sí, Yamilet trabaja en remoto con clientes de cualquier país, con reuniones por videollamada." },
