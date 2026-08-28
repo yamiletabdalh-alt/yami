@@ -12,7 +12,7 @@ window.PORTFOLIO_CONFIG = {
      2. Escribe el email donde quieres RECIBIR los mensajes y te dan
         una "Access Key".
      3. Pega esa clave aquí, entre las comillas:                        */
-  web3formsKey: "PON-AQUI-TU-ACCESS-KEY",
+  web3formsKey: "dcff39c2-5260-45ca-9d30-d985e128da88",
 
   /* Mientras la clave no esté puesta, los formularios funcionan en
      "modo demo" (validan pero no envían nada). En cuanto la pongas,
