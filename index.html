@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yamilet Abdalh — Portfolio &amp; diseño web</title>
+  <meta name="description" content="Portfolio de Yamilet Abdalh: sitios web y productos digitales centrados en la atención al cliente. Portales de soporte, chat en vivo, reservas y encuestas de satisfacción.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="progreso" id="progreso"></div>
+
+  <div class="promo" id="promo">
+    🎁 Plazas de septiembre abiertas — <a href="#contacto">reserva una llamada gratis de 20 min</a>
+    <button id="cerrar-promo" aria-label="Cerrar aviso">×</button>
+  </div>
+
+  <header class="site-header">
+    <a href="#inicio" class="logo">Yamilet<span>.</span></a>
+    <nav>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#opiniones">Opiniones</a>
+      <a href="#contacto">Contacto</a>
+      <span class="disponible">Disponible para proyectos</span>
+      <button id="tema" class="tema" aria-label="Cambiar tema">◐</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero">
+      <p class="eyebrow">Desarrollo web · Experiencia de cliente</p>
+      <h1>Creo webs que <span class="rotativo" id="rotativo">convierten</span></h1>
+      <p class="lead">Soy Yamilet Abdalh. Diseño y programo sitios rápidos y accesibles, especializados en <strong>atención al cliente</strong>: soporte, reservas, onboarding y todo lo que hace que tus usuarios vuelvan.</p>
+      <div class="cta-row">
+        <a href="#proyectos" class="btn btn-primary">Ver proyectos ↓</a>
+        <a href="#contacto" class="btn btn-ghost">Trabajemos juntos</a>
+      </div>
+      <div class="trust">
+        <span>Entrega en 2–4 semanas</span>
+        <span>Soporte post-lanzamiento</span>
+        <span>Precio cerrado sin sorpresas</span>
+      </div>
+
+      <div class="stats" id="stats">
+        <div class="stat"><b data-cuenta="120">0</b><span>proyectos entregados</span></div>
+        <div class="stat"><b data-cuenta="8">0</b><span>años de experiencia</span></div>
+        <div class="stat"><b data-cuenta="98" data-sufijo="%">0</b><span>clientes satisfechos</span></div>
+        <div class="stat"><b data-cuenta="24" data-sufijo="h">0</b><span>tiempo de respuesta</span></div>
+      </div>
+    </section>
+
+    <section class="marcas">
+      <p>Con la confianza de equipos como</p>
+      <div class="marcas-pista">
+        <span>Nébula</span><span>Cafeína&amp;Co</span><span>Móvilo</span><span>Raíz Studio</span><span>Kappa Health</span>
+      </div>
+    </section>
+
+    <section id="proyectos" class="bloque">
+      <h2>Proyectos</h2>
+      <p class="sub">Una muestra real de lo que diseño y desarrollo en el día a día: sitios, tiendas, aplicaciones web y trabajos de optimización. Abre "Ver el caso" en cada ficha para leer el reto, la solución y mi papel.</p>
+      <div class="filtros" id="filtros">
+        <button class="filtro activo" data-cat="todos">Todos</button>
+        <button class="filtro" data-cat="web">Webs y landings</button>
+        <button class="filtro" data-cat="tienda">Tiendas</button>
+        <button class="filtro" data-cat="app">Apps y paneles</button>
+        <button class="filtro" data-cat="opt">Optimización</button>
+      </div>
+      <div class="proyectos" id="lista-proyectos"></div>
+    </section>
+
+    <section class="publicidad bloque">
+      <p class="aviso">Espacio publicitario</p>
+      <div class="anuncio anuncio-leaderboard">
+        <span class="patrocinado">Publicidad</span>
+        <b>Tu marca podría estar aquí</b>
+        <span>Formato leaderboard · 728 × 90 · visible en todas las páginas</span>
+        <a href="#contacto" class="btn btn-ghost">Anúnciate</a>
+      </div>
+      <div class="anuncios-fila">
+        <div class="anuncio">
+          <span class="patrocinado">Patrocinado</span>
+          <b>Hosting web para creativos</b>
+          <span>Aloja tu portfolio con SSL y despliegue automático.</span>
+          <a href="#" class="btn btn-primary">Probar gratis</a>
+        </div>
+        <div class="anuncio">
+          <span class="patrocinado">Publicidad</span>
+          <b>Espacio disponible</b>
+          <span>Rectángulo 300 × 250. Reserva mensual.</span>
+          <a href="#contacto" class="btn btn-ghost">Solicitar tarifas</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicios" class="bloque">
+      <h2>Servicios</h2>
+      <p class="sub">Precios de referencia. Cada proyecto se cierra con presupuesto fijo tras una primera llamada.</p>
+      <div class="planes">
+        <article class="plan">
+          <h3>Landing express</h3>
+          <p class="precio">$490 <small>/ proyecto</small></p>
+          <ul>
+            <li>1 página optimizada</li>
+            <li>Formulario y analítica</li>
+            <li>Entrega en 1 semana</li>
+            <li>2 rondas de cambios</li>
+          </ul>
+          <button class="btn btn-ghost" data-plan="Landing express">Empezar</button>
+        </article>
+        <article class="plan destacado">
+          <span class="cinta">Más pedido</span>
+          <h3>Web de soporte</h3>
+          <p class="precio">$1,900 <small>/ proyecto</small></p>
+          <ul>
+            <li>Centro de ayuda + buscador</li>
+            <li>Chat en vivo integrado</li>
+            <li>Portal de tickets del cliente</li>
+            <li>Formación del equipo incluida</li>
+          </ul>
+          <button class="btn btn-primary" data-plan="Web de soporte">Reservar plaza</button>
+        </article>
+        <article class="plan">
+          <h3>A medida</h3>
+          <p class="precio">Desde $3,500</p>
+          <ul>
+            <li>Reservas, pagos o integraciones</li>
+            <li>Diseño de sistema propio</li>
+            <li>Encuestas y panel de métricas</li>
+            <li>Mantenimiento mensual opcional</li>
+          </ul>
+          <button class="btn btn-ghost" data-plan="A medida">Hablar del proyecto</button>
+        </article>
+      </div>
+      <p id="plan-msg" class="estado" role="status"></p>
+    </section>
+
+    <section id="opiniones" class="bloque">
+      <h2>Lo que dicen los clientes</h2>
+      <p class="sub">Reseñas reales de proyectos entregados en los últimos dos años.</p>
+      <div class="opiniones" id="lista-opiniones"></div>
+    </section>
+
+    <section id="faq" class="bloque">
+      <h2>Preguntas frecuentes</h2>
+      <div class="acordeon">
+        <details>
+          <summary>¿Cuánto tarda un proyecto?</summary>
+          <p>Una landing, una semana. Una web de soporte completa, entre 2 y 4 semanas según integraciones.</p>
+        </details>
+        <details>
+          <summary>¿Qué incluye el soporte post-lanzamiento?</summary>
+          <p>30 días de correcciones sin coste y la opción de un plan de mantenimiento mensual con horas de cambios incluidas.</p>
+        </details>
+        <details>
+          <summary>¿Trabajas con clientes fuera de mi país?</summary>
+          <p>Sí. Trabajo en remoto con reuniones por videollamada y toda la documentación compartida en línea.</p>
+        </details>
+        <details>
+          <summary>¿Cómo son los pagos?</summary>
+          <p>50% al arrancar y 50% a la entrega. Para proyectos a medida se puede fraccionar por hitos.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="boletin" class="bloque">
+      <div class="boletin reveal">
+        <h2>Consejos de UX y atención al cliente</h2>
+        <p>Un correo al mes con ideas prácticas para mejorar la experiencia de tus usuarios. Sin spam.</p>
+        <form id="form-boletin" novalidate>
+          <input type="checkbox" name="botcheck" class="oculto-bot" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="email" id="email-boletin" placeholder="tu@email.com" aria-label="Tu email" required>
+          <button type="submit" class="btn btn-primary">Suscribirme</button>
+        </form>
+        <p id="boletin-estado" class="estado" role="status"></p>
+      </div>
+    </section>
+
+    <section id="contacto" class="bloque">
+      <h2>Contacto</h2>
+      <p class="sub">Cuéntame qué necesitas y te respondo en menos de 24 h con una propuesta inicial.</p>
+      <form id="form-contacto" class="form" novalidate>
+        <input type="checkbox" name="botcheck" class="oculto-bot" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="campo">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" required>
+        </div>
+        <div class="campo">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="campo">
+          <label for="mensaje">¿Qué proyecto tienes en mente?</label>
+          <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+        <p id="form-estado" class="estado" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="redes">
+      <a href="#" data-red="github">GitHub</a><a href="#" data-red="linkedin">LinkedIn</a><a href="#" data-red="instagram">Instagram</a><a href="#" data-red="email">Email</a>
+    </div>
+    <p>© <span id="anio"></span> Yamilet Abdalh · Hecho con HTML, CSS y JS</p>
+  </footer>
+
+  <a class="wa" href="#contacto" aria-label="Escríbeme por WhatsApp" title="WhatsApp">✆</a>
+  <button class="arriba" id="arriba" aria-label="Volver arriba">↑</button>
+
+  <script src="config.js"></script>
+  <script src="proyectos.js"></script>
+  <script src="conocimiento.js"></script>
+  <script src="asistente.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

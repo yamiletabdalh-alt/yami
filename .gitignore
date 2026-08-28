@@ -1,0 +1,20 @@
+# Dependencias (Netlify las instala solo desde package.json)
+node_modules/
+
+# Netlify
+.netlify/
+
+# Variables de entorno locales — NUNCA subir claves
+.env
+.env.*
+
+# Sistema operativo / editores
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Logs
+npm-debug.log*
+*.log

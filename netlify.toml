@@ -1,0 +1,9 @@
+# Configuración de Netlify para el portfolio.
+# El sitio es estático (se publica la carpeta tal cual) y las funciones
+# del servidor viven en netlify/functions.
+
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# El asistente con IA queda en:  https://tu-sitio/.netlify/functions/asistente

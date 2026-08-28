@@ -1,0 +1,9 @@
+{
+  "name": "portfolio-yamilet",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portfolio de Yamilet Abdalh. La dependencia solo hace falta para el asistente con IA (Nivel 2).",
+  "dependencies": {
+    "@anthropic-ai/sdk": "*"
+  }
+}
