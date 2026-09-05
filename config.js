@@ -44,9 +44,9 @@ window.PORTFOLIO_CONFIG = {
      Pega aquí el enlace de cada plan (https://buy.stripe.com/...).
      Si un plan queda "", su botón "Empezar" lleva al formulario.   */
   pagos: {
-    esencial: "",
-    negocio:  "",
-    pro:      ""
+    esencial: "https://buy.stripe.com/test_bJedRafou4Jf57h9b73cc00",
+    negocio:  "https://buy.stripe.com/test_4gM28s2BIfnT2Z98733cc01",
+    pro:      "https://buy.stripe.com/test_cNidRa2BIa3zfLV8733cc02"
   },
 
 
