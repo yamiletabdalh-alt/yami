@@ -153,8 +153,11 @@ faqs.forEach(function (d) {
 
 // ===== Selección de plan =====
 var planMsg = document.getElementById("plan-msg");
+var pagos = cfg.pagos || {};
 document.querySelectorAll("[data-plan]").forEach(function (b) {
   b.addEventListener("click", function () {
+    var url = pagos[b.dataset.plan.toLowerCase().split(" ")[0]];
+    if (url) { window.open(url, "_blank", "noopener"); return; }
     planMsg.textContent = 'Has elegido "' + b.dataset.plan + '". Te llevo al formulario para contarme los detalles.';
     planMsg.className = "estado ok";
     document.getElementById("contacto").scrollIntoView({ behavior: "smooth" });

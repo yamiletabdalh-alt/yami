@@ -40,6 +40,16 @@ window.PORTFOLIO_CONFIG = {
   },
 
 
+  /* --- PAGOS ONLINE (Stripe Payment Links) -----------------------
+     Pega aquí el enlace de cada plan (https://buy.stripe.com/...).
+     Si un plan queda "", su botón "Empezar" lleva al formulario.   */
+  pagos: {
+    esencial: "",
+    negocio:  "",
+    pro:      ""
+  },
+
+
   /* --- REDES (el pie de página) — pon la URL o deja "" para ocultar --- */
   redes: {
     github:    "",
