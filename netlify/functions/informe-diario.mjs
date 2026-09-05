@@ -53,7 +53,16 @@ async function pedirCloudflare(desde, hasta) {
   });
   const j = await r.json();
   if (j.errors && j.errors.length) {
-    const diag = ` [diagnóstico: token=${CF_TOKEN.length} caracteres (Cloudflare usa 40), formato ${/^[A-Za-z0-9_-]{20,}$/.test(CF_TOKEN) ? "ok" : "RARO"}; account=${CF_ACCOUNT.length} caracteres (se esperan 32)]`;
+    const t = CF_TOKEN;
+    const raros = [...new Set((t.match(/[^A-Za-z0-9_-]/g) || []).map((c) => {
+      if (c === " ") return "espacio";
+      if (c === "\n") return "salto-de-linea";
+      if (c === "\t") return "tab";
+      return "«" + c + "»";
+    }))];
+    const diag =
+      ` [diag: longitud token=${t.length} (deben ser 40); empieza "${t.slice(0, 3)}" termina "${t.slice(-3)}"; ` +
+      `caracteres no validos: ${raros.length ? raros.join(", ") : "ninguno"}; longitud account=${CF_ACCOUNT.length}]`;
     throw new Error("Cloudflare: " + JSON.stringify(j.errors) + diag);
   }
   const acc = j?.data?.viewer?.accounts?.[0];
