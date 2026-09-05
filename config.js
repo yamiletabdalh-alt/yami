@@ -50,6 +50,12 @@ window.PORTFOLIO_CONFIG = {
   },
 
 
+  /* --- ANALÍTICA DE VISITAS (Cloudflare Web Analytics, gratis) -----
+     Pega aquí el "token" que te da Cloudflare (Analytics → Web Analytics).
+     Vacío "" = sin analítica.                                       */
+  analiticaCloudflare: "",
+
+
   /* --- REDES (el pie de página) — pon la URL o deja "" para ocultar --- */
   redes: {
     github:    "",

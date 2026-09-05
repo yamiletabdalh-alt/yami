@@ -10,6 +10,15 @@ var cfg = window.PORTFOLIO_CONFIG || {};
 var tieneConfig = !!window.PORTFOLIO_CONFIG;
 var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+// ===== Analítica de visitas (Cloudflare Web Analytics) =====
+if (cfg.analiticaCloudflare) {
+  var _cf = document.createElement("script");
+  _cf.defer = true;
+  _cf.src = "https://static.cloudflareinsights.com/beacon.min.js";
+  _cf.setAttribute("data-cf-beacon", '{"token": "' + cfg.analiticaCloudflare + '"}');
+  document.head.appendChild(_cf);
+}
+
 function web3Listo() {
   return cfg.web3formsKey && !/PON-AQUI|ACCESS-KEY|ACCESS_KEY/i.test(cfg.web3formsKey);
 }
