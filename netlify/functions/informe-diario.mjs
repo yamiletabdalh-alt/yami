@@ -52,7 +52,10 @@ async function pedirCloudflare(desde, hasta) {
     body: JSON.stringify({ query, variables: { acc: CF_ACCOUNT, site: CF_SITE, desde, hasta } }),
   });
   const j = await r.json();
-  if (j.errors && j.errors.length) throw new Error("Cloudflare: " + JSON.stringify(j.errors));
+  if (j.errors && j.errors.length) {
+    const diag = ` [diagnóstico: token=${CF_TOKEN.length} caracteres (Cloudflare usa 40), formato ${/^[A-Za-z0-9_-]{20,}$/.test(CF_TOKEN) ? "ok" : "RARO"}; account=${CF_ACCOUNT.length} caracteres (se esperan 32)]`;
+    throw new Error("Cloudflare: " + JSON.stringify(j.errors) + diag);
+  }
   const acc = j?.data?.viewer?.accounts?.[0];
   if (!acc) throw new Error("Cloudflare no devolvió datos de la cuenta (¿ID o token incorrectos?)");
   return acc;
