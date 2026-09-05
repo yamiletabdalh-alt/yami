@@ -1,19 +1,18 @@
 /* =====================================================================
    INFORME DIARIO DE LA WEB  ->  email
    ---------------------------------------------------------------------
-   Se ejecuta solo cada día (cron de Netlify) y también se puede probar
-   abriendo:  https://yamilet-abdalh-web.netlify.app/.netlify/functions/informe-diario
+   Función HTTP normal. El "cada día" lo dispara GitHub Actions
+   (.github/workflows/informe-diario.yml). Probar abriendo:
+     https://yamilet-abdalh-web.netlify.app/.netlify/functions/informe-diario
 
-   Necesita 2 variables de entorno en Netlify (Project configuration ->
-   Environment variables):
+   Variables de entorno en Netlify (Environment variables):
      CF_API_TOKEN    -> token de Cloudflare con permiso "Account Analytics: Read"
      CF_ACCOUNT_ID   -> ID de tu cuenta de Cloudflare
    Opcionales:
      CF_SITE_TAG     -> por defecto usa el token de Web Analytics de config.js
      WEB3FORMS_KEY   -> por defecto usa la del formulario de contacto
+     INFORME_TOKEN   -> si lo defines, hay que llamar con ?t=ESE_VALOR
    ===================================================================== */
-
-export const config = { schedule: "0 7 * * *" }; // 07:00 UTC cada día
 
 const CF_TOKEN   = process.env.CF_API_TOKEN;
 const CF_ACCOUNT = process.env.CF_ACCOUNT_ID;
@@ -79,7 +78,16 @@ function lista(rows, dimName, vacio) {
   return rows.map((x) => "  " + (x.dimensions[dimName] || vacio) + ": " + x.count).join("\n");
 }
 
-export default async () => {
+export default async (req) => {
+  const secreto = process.env.INFORME_TOKEN;
+  if (secreto) {
+    try {
+      const u = new URL(req.url);
+      if (u.searchParams.get("t") !== secreto) {
+        return new Response("No autorizado.", { status: 401 });
+      }
+    } catch (_) {}
+  }
   if (!CF_TOKEN || !CF_ACCOUNT) {
     return new Response(
       "Faltan variables: define CF_API_TOKEN y CF_ACCOUNT_ID en Netlify.",
