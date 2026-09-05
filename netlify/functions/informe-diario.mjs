@@ -14,10 +14,11 @@
      INFORME_TOKEN   -> si lo defines, hay que llamar con ?t=ESE_VALOR
    ===================================================================== */
 
-const CF_TOKEN   = process.env.CF_API_TOKEN;
-const CF_ACCOUNT = process.env.CF_ACCOUNT_ID;
-const CF_SITE    = process.env.CF_SITE_TAG || "61bc754d281b44da961b14ec3b494490";
-const WEB3_KEY   = process.env.WEB3FORMS_KEY || "dcff39c2-5260-45ca-9d30-d985e128da88";
+const limpio = (v) => (v || "").trim().replace(/^["']|["']$/g, "");
+const CF_TOKEN   = limpio(process.env.CF_API_TOKEN);
+const CF_ACCOUNT = limpio(process.env.CF_ACCOUNT_ID);
+const CF_SITE    = limpio(process.env.CF_SITE_TAG) || "61bc754d281b44da961b14ec3b494490";
+const WEB3_KEY   = limpio(process.env.WEB3FORMS_KEY) || "dcff39c2-5260-45ca-9d30-d985e128da88";
 const SITIO      = "https://yamilet-abdalh-web.netlify.app";
 
 function rango(diasAtras) {
