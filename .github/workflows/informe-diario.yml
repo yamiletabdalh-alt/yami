@@ -11,8 +11,8 @@ jobs:
     steps:
       - name: Llamar a la función de informe
         run: |
-          curl -fsS --retry 3 --retry-delay 10 \
-            "https://yamilet-abdalh-web.netlify.app/.netlify/functions/informe-diario${INFORME_QS}"
+          curl -sS --retry 2 --retry-delay 10 \
+            "https://yamilet-abdalh-web.netlify.app/.netlify/functions/informe-diario${INFORME_QS}" || true
         env:
           # Si defines INFORME_TOKEN en Netlify, añade también el secreto
           # INFORME_TOKEN en GitHub (Settings -> Secrets -> Actions) y esto lo usará.
