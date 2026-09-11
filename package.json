@@ -2,8 +2,9 @@
   "name": "portfolio-yamilet",
   "version": "1.0.0",
   "private": true,
-  "description": "Portfolio de Yamilet Abdalh. La dependencia solo hace falta para el asistente con IA (Nivel 2).",
+  "description": "Portfolio de Yamilet Abdalh. Dependencias: asistente con IA (Nivel 2) y el contador de visitas del informe diario.",
   "dependencies": {
-    "@anthropic-ai/sdk": "*"
+    "@anthropic-ai/sdk": "*",
+    "@netlify/blobs": "*"
   }
 }

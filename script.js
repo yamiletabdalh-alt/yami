@@ -10,6 +10,11 @@ var cfg = window.PORTFOLIO_CONFIG || {};
 var tieneConfig = !!window.PORTFOLIO_CONFIG;
 var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+// ===== Contador propio de visitas (para el informe diario) =====
+try {
+  fetch("/.netlify/functions/contar-visita", { method: "POST", keepalive: true }).catch(function () {});
+} catch (e) {}
+
 // ===== Analítica de visitas (Cloudflare Web Analytics) =====
 if (cfg.analiticaCloudflare) {
   var _cf = document.createElement("script");
