@@ -10,7 +10,8 @@ import { getStore } from "@netlify/blobs";
 export default async () => {
   try {
     const store = getStore({ name: "visitas", consistency: "strong" });
-    const hoy = new Date().toISOString().slice(0, 10); // YYYY-MM-DD (UTC)
+    // YYYY-MM-DD en la hora de Yamilet (Nueva York), igual que informe-diario.mjs
+    const hoy = new Date().toLocaleDateString("en-CA", { timeZone: "America/New_York" });
     const actual = parseInt((await store.get(hoy, { type: "text" })) || "0", 10);
     await store.set(hoy, String(actual + 1));
     return new Response(JSON.stringify({ ok: true }), {

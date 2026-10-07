@@ -20,11 +20,11 @@
 import { getStore } from "@netlify/blobs";
 
 const SITIO = "https://yamilet-abdalh-web.netlify.app";
+const ZONA = "America/New_York"; // los días se cuentan en la hora de Yamilet (igual que contar-visita.mjs)
 
 function fechaISO(diasAtras) {
-  const d = new Date();
-  d.setUTCDate(d.getUTCDate() - diasAtras);
-  return d.toISOString().slice(0, 10); // YYYY-MM-DD
+  const d = new Date(Date.now() - diasAtras * 86400000);
+  return d.toLocaleDateString("en-CA", { timeZone: ZONA }); // YYYY-MM-DD
 }
 
 export default async (req) => {
@@ -50,8 +50,8 @@ export default async (req) => {
     const totalSemana = cifras.reduce((a, b) => a + b, 0);
     const detalle = dias.map((f, i) => `  ${f}: ${cifras[i]} visita${cifras[i] === 1 ? "" : "s"}`).join("\n");
 
-    const fecha = new Date(Date.now() - 86400000).toLocaleDateString("es-ES", {
-      weekday: "long", day: "numeric", month: "long",
+    const fecha = new Date().toLocaleDateString("es-ES", {
+      weekday: "long", day: "numeric", month: "long", timeZone: ZONA,
     });
 
     const msg =
