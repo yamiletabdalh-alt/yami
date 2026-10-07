@@ -7,6 +7,18 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://yamilet-abdalh-web.netlify.app/llamada.html</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://yamilet-abdalh-web.netlify.app/soporte.html</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://yamilet-abdalh-web.netlify.app/terminos.html</loc>
     <lastmod>2026-10-07</lastmod>
     <changefreq>yearly</changefreq>

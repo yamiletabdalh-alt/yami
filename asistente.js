@@ -107,6 +107,22 @@
     });
   }
 
+  // Botones que llevan al agente adecuado (llamadas, soporte, portal, planes)
+  function pintarAcciones(texto) {
+    var t = norm(texto);
+    var portal = (window.PORTFOLIO_CONFIG || {}).portalClientes || "soporte.html";
+    (KB.acciones || []).forEach(function (a) {
+      var coincide = a.claves.some(function (c) { return t.indexOf(norm(c)) > -1; });
+      if (!coincide) return;
+      var enlace = document.createElement("a");
+      enlace.className = "chat-chip";
+      enlace.textContent = a.texto;
+      enlace.href = a.url === "portal" ? portal : a.url;
+      if (a.url === "portal" && portal.indexOf("http") === 0) { enlace.target = "_blank"; enlace.rel = "noopener"; }
+      chips.appendChild(enlace);
+    });
+  }
+
   function responder(texto) {
     var esperando = escribiendo();
     var local = responderLocal(texto);
@@ -115,6 +131,7 @@
       esperando.remove();
       burbuja(txt, "bot");
       historial.push({ role: "assistant", content: txt });
+      pintarAcciones(texto);
     }
 
     if (usaIA) {

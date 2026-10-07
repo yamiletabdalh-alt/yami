@@ -112,6 +112,16 @@
         boton.disabled = true;
         estado.textContent = "Enviando…";
         estado.className = "estado";
+        // Agente de clientes: lo guarda en el registro (panel.html)
+        fetch("/.netlify/functions/registrar", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            tipo: "inicio", nombre: dato("nombre"), email: dato("email"), negocio: dato("negocio"), plan: dato("plan"),
+            necesidad: dato("necesidad"), enlaces: dato("enlaces"), estilo: dato("estilo"),
+            sesion: new URLSearchParams(location.search).get("sesion") || "", botcheck: d.get("botcheck") ? 1 : 0
+          })
+        }).catch(function () {});
         fetch("https://api.web3forms.com/submit", {
           method: "POST",
           headers: { "Content-Type": "application/json", Accept: "application/json" },

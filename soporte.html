@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Soporte y quejas — Yamilet Abdalh</title>
+  <meta name="description" content="Atención al cliente de Yamilet Abdalh: problemas con tu web, cambios, facturación, cancelaciones o quejas.">
+  <link rel="canonical" href="https://yamilet-abdalh-web.netlify.app/soporte.html">
+  <meta name="theme-color" content="#0d0714">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="fondo" aria-hidden="true"><span></span><span></span><span></span></div>
+  <header class="site-header">
+    <a href="./" class="logo">Yamilet<span>.</span></a>
+    <nav><a href="./#servicios">Planes</a><a href="llamada.html">Reservar llamada</a></nav>
+  </header>
+
+  <main class="pagina-form">
+    <p class="eyebrow"><span class="punto"></span>Atención al cliente</p>
+    <h1>¿En qué te <span class="grad">ayudo</span>?</h1>
+    <p class="lead">Cuéntame qué pasa y recibirás un número de seguimiento. Respondo en menos de 24 h (o antes si es urgente o tu plan tiene prioridad).</p>
+
+    <div class="atajos">
+      <a class="atajo" id="atajo-portal" href="terminos.html" hidden>
+        <b>💳 Cambiar tarjeta, ver facturas o cancelar</b>
+        <span>Hazlo tú al momento en tu portal de cliente, con el email con el que pagaste.</span>
+      </a>
+      <a class="atajo" href="terminos.html">
+        <b>📄 Cancelaciones y reembolsos</b>
+        <span>Cancela cuando quieras; 100 % de devolución en los primeros 7 días si aún no empecé.</span>
+      </a>
+    </div>
+
+    <form id="form-soporte" class="form" novalidate>
+      <input type="checkbox" name="botcheck" class="oculto-bot" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="dos">
+        <div class="campo">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" required>
+        </div>
+        <div class="campo">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+      </div>
+      <div class="dos">
+        <div class="campo">
+          <label for="tipo">Tipo de consulta</label>
+          <select id="tipo" name="tipo">
+            <option>Problema con mi web</option>
+            <option>Quiero un cambio en mi web</option>
+            <option>Facturación o pagos</option>
+            <option>Cancelación o reembolso</option>
+            <option>Queja</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="urgencia">Urgencia</label>
+          <select id="urgencia" name="urgencia">
+            <option>Normal</option>
+            <option>Urgente</option>
+          </select>
+        </div>
+      </div>
+      <div class="campo">
+        <label for="mensaje">Cuéntame qué ha pasado</label>
+        <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Enviar</button>
+      <p id="estado" class="estado" role="status"></p>
+    </form>
+  </main>
+
+  <footer class="site-footer">
+    <nav class="legales"><a href="terminos.html">Términos</a><a href="privacidad.html">Privacidad</a><a href="llamada.html">Reservar llamada</a></nav>
+    <p>© <span id="anio"></span> Yamilet Abdalh</p>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="legal.js"></script>
+  <script>
+    (function () {
+      var cfg = window.PORTFOLIO_CONFIG || {};
+      var portal = document.getElementById("atajo-portal");
+      if (cfg.portalClientes) { portal.href = cfg.portalClientes; portal.target = "_blank"; portal.rel = "noopener"; portal.hidden = false; }
+
+      var form = document.getElementById("form-soporte");
+      var estado = document.getElementById("estado");
+      function aviso(txt, clase) { estado.textContent = txt; estado.className = "estado " + (clase || ""); }
+      function avisarPorEmail(datos, numero) {
+        if (!cfg.web3formsKey) return;
+        fetch("https://api.web3forms.com/submit", {
+          method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            access_key: cfg.web3formsKey,
+            subject: (datos.urgencia === "Urgente" ? "🚨 URGENTE · " : "🆘 ") + (numero ? numero + " · " : "") + datos.tipo + " — " + datos.nombre,
+            from_name: datos.nombre, name: datos.nombre, email: datos.email,
+            tipo: datos.tipo, urgencia: datos.urgencia, ticket: numero || "(sin número)", message: datos.mensaje,
+          }),
+        }).catch(function () {});
+      }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var d = new FormData(form);
+        var dato = function (k) { return String(d.get(k) || "").trim(); };
+        if (!dato("nombre") || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(dato("email"))) return aviso("Escribe tu nombre y un email válido.", "error");
+        if (!dato("mensaje")) return aviso("Cuéntame qué ha pasado.", "error");
+
+        var datos = { tipo: dato("tipo"), urgencia: dato("urgencia"), nombre: dato("nombre"), email: dato("email"), mensaje: dato("mensaje") };
+        var boton = form.querySelector('button[type="submit"]');
+        boton.disabled = true;
+        aviso("Enviando…");
+        fetch("/.netlify/functions/registrar", {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(Object.assign({}, datos, { tipo: "soporte", tipoConsulta: datos.tipo, botcheck: d.get("botcheck") ? 1 : 0 })),
+        })
+          .then(function (r) { return r.json(); })
+          .then(function (res) {
+            if (!res.ok) throw new Error(res.error);
+            avisarPorEmail(datos, res.numero);
+            form.innerHTML =
+              '<h2 style="font-size:1.6rem">Recibido ✅</h2>' +
+              '<p style="color:var(--muted)">Tu número de seguimiento es <b style="color:var(--text);font-size:1.2rem">' + res.numero + "</b>. Guárdalo por si necesitas escribirme de nuevo.</p>" +
+              '<p style="color:var(--muted)">Te responderé a tu email ' + (datos.urgencia === "Urgente" ? "lo antes posible" : "en menos de 24 h") + ".</p>" +
+              '<p class="legal-volver"><a class="btn btn-ghost" href="./">Volver a la web</a></p>';
+          })
+          .catch(function () {
+            // Si el registro falla, al menos llega el aviso por email
+            avisarPorEmail(datos, "");
+            form.innerHTML = '<h2 style="font-size:1.6rem">Recibido ✅</h2><p style="color:var(--muted)">Te responderé a tu email en menos de 24 h.</p><p class="legal-volver"><a class="btn btn-ghost" href="./">Volver a la web</a></p>';
+          });
+      });
+    })();
+  </script>
+</body>
+</html>

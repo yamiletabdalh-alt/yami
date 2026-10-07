@@ -51,11 +51,32 @@ PROCESO DE TRABAJO:
 TECNOLOGÍAS: HTML, CSS y JavaScript; Astro, WordPress a medida o React según el proyecto.
 
 CÓMO CONTACTAR: desde el formulario de contacto de la propia web. Respuesta en menos de 24 h.
+
+LLAMADA GRATIS: se reserva en la página "Reservar llamada" (llamada.html): el
+cliente elige día y hora (hora de Nueva York), 20 minutos por videollamada.
+
+CLIENTES ACTUALES, QUEJAS O PROBLEMAS: en la página "Soporte y quejas"
+(soporte.html) se abre un caso con número de seguimiento; respuesta en menos
+de 24 h. Para cambiar la tarjeta, ver facturas o cancelar, el cliente usa su
+portal de cliente de Stripe (enlace en el pie de la web y en Soporte).
+
+CANCELACIÓN Y REEMBOLSOS: sin permanencia; la cancelación se aplica al final
+del mes ya pagado. Si se cancela en los 7 días siguientes al primer pago y
+Yamilet aún no ha empezado el trabajo, se devuelve el 100 %.
+Si alguien está molesto o tiene una queja, discúlpate con amabilidad y
+dirígelo a la página de Soporte y quejas para que quede registrado.
 `.trim(),
 
   /* Respuestas rápidas. "claves" son palabras o trozos de frase; si el
      mensaje del cliente contiene alguna, se muestra esa respuesta. */
   faqs: [
+    // Primero quejas y cancelaciones: si hay empate, gana la que va antes
+    { claves: ["queja", "reclamación", "reclamacion", "problema", "no funciona", "error", "molesta", "enfadad", "mal servicio", "soporte", "ayuda con mi web", "incidencia"],
+      respuesta: "Siento mucho el inconveniente. Para que quede registrado y se resuelva cuanto antes, abre un caso en Soporte y quejas (botón de abajo): recibirás un número de seguimiento y respuesta en menos de 24 h." },
+
+    { claves: ["cancelar", "cancelación", "cancelacion", "darme de baja", "baja", "reembolso", "devolución", "devolucion", "cambiar tarjeta", "factura"],
+      respuesta: "Puedes cancelar cuando quieras desde tu portal de cliente (botón de abajo): se aplica al final del mes ya pagado. Si cancelas en los 7 días siguientes al primer pago y aún no se ha empezado tu proyecto, se devuelve el 100 %." },
+
     { claves: ["precio", "cuesta", "cuánto vale", "tarifa", "presupuesto", "coste", "cuanto cuesta", "suscripción", "plan", "mensual"],
       respuesta: "Trabajo con planes mensuales sin permanencia y con alta gratuita: Esencial $15/mes, Negocio $35/mes y Pro $65/mes. También hago proyectos puntuales con presupuesto a medida." },
 
@@ -86,12 +107,22 @@ CÓMO CONTACTAR: desde el formulario de contacto de la propia web. Respuesta en 
     { claves: ["reserva", "citas", "agenda", "calendario", "booking"],
       respuesta: "Desarrolla sistemas de reservas con confirmación y recordatorios automáticos, para que las citas no se pierdan por WhatsApp." },
 
-    { claves: ["contacto", "hablar", "llamada", "reunión", "cita", "empezar", "contratar"],
-      respuesta: "Escríbele desde el formulario de contacto de esta misma página y te responde en menos de 24 h. La primera llamada de 20 minutos es gratis." }
+    { claves: ["contacto", "hablar", "llamada", "llamar", "reunión", "reunion", "cita", "videollamada", "empezar", "contratar"],
+      respuesta: "La primera llamada de 20 minutos es gratis: elige día y hora en la página de reservas (botón de abajo). Si prefieres, escríbele desde el formulario de contacto y te responde en menos de 24 h." },
+
+  ],
+
+  /* Botones de acción que el asistente muestra según lo que pregunte el
+     cliente. "url" puede ser una página o "portal" (el de Stripe). */
+  acciones: [
+    { claves: ["llamada", "llamar", "reunión", "reunion", "cita", "videollamada", "hablar", "empezar", "contratar"], texto: "📞 Reservar llamada gratis", url: "llamada.html" },
+    { claves: ["queja", "reclamación", "reclamacion", "problema", "no funciona", "error", "molesta", "enfadad", "soporte", "incidencia", "ayuda con mi web"], texto: "🆘 Abrir caso de soporte", url: "soporte.html" },
+    { claves: ["cancelar", "cancelación", "cancelacion", "baja", "reembolso", "devolución", "devolucion", "tarjeta", "factura"], texto: "💳 Mi portal de cliente", url: "portal" },
+    { claves: ["precio", "cuesta", "cuánto", "cuanto", "plan", "tarifa", "pagar", "suscrib"], texto: "💰 Ver planes", url: "./#servicios" }
   ],
 
   /* Mensajes de la interfaz del asistente */
   saludo: "¡Hola! Soy el asistente de Yamilet 👋 Puedo ayudarte con dudas sobre servicios, precios, plazos y proceso de trabajo. ¿Qué te gustaría saber?",
-  sugerencias: ["¿Cuánto cuestan los planes?", "¿Gestionas redes sociales?", "¿Haces webs para terapias?", "¿Trabajas con IA?"],
+  sugerencias: ["¿Cuánto cuestan los planes?", "Quiero reservar una llamada", "¿Haces webs para terapias?", "Tengo un problema con mi web"],
   sinRespuesta: "Esa pregunta la responde mejor Yamilet en persona. Déjale tu mensaje en el formulario de contacto de esta página y te contesta en menos de 24 h."
 };

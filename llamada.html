@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reserva una llamada gratis — Yamilet Abdalh</title>
+  <meta name="description" content="Reserva una videollamada gratuita de 20 minutos con Yamilet Abdalh para hablar de tu web, tus redes o tu proyecto con IA.">
+  <link rel="canonical" href="https://yamilet-abdalh-web.netlify.app/llamada.html">
+  <meta name="theme-color" content="#0d0714">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="fondo" aria-hidden="true"><span></span><span></span><span></span></div>
+  <header class="site-header">
+    <a href="./" class="logo">Yamilet<span>.</span></a>
+    <nav><a href="./#servicios">Planes</a><a href="soporte.html">Soporte</a></nav>
+  </header>
+
+  <main class="pagina-form">
+    <p class="eyebrow"><span class="punto"></span>Llamada gratis · 20 min</p>
+    <h1>Reserva tu <span class="grad">llamada gratis</span></h1>
+    <p class="lead">Elige día y hora. Hablamos 20 minutos por videollamada sobre lo que necesitas y te digo qué plan te encaja, sin compromiso.</p>
+
+    <form id="form-llamada" class="form" novalidate>
+      <input type="checkbox" name="botcheck" class="oculto-bot" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <div class="campo">
+        <span class="etiqueta">1. Elige el día</span>
+        <div class="selector" id="dias" role="group" aria-label="Días disponibles"><span class="cargando">Cargando horarios…</span></div>
+      </div>
+      <div class="campo">
+        <span class="etiqueta">2. Elige la hora <small id="zona-txt"></small></span>
+        <div class="selector" id="horas" role="group" aria-label="Horas disponibles"><span class="cargando">Primero elige un día.</span></div>
+      </div>
+
+      <div class="dos">
+        <div class="campo">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" required>
+        </div>
+        <div class="campo">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+      </div>
+      <div class="dos">
+        <div class="campo">
+          <label for="telefono">Teléfono / WhatsApp (opcional)</label>
+          <input type="tel" id="telefono" name="telefono">
+        </div>
+        <div class="campo">
+          <label for="tema">Tema</label>
+          <select id="tema" name="tema">
+            <option>Quiero una web</option>
+            <option>Web para terapeutas</option>
+            <option>Redes sociales</option>
+            <option>IA y asistentes</option>
+            <option>Otro</option>
+          </select>
+        </div>
+      </div>
+      <div class="campo">
+        <label for="mensaje">¿Algo que deba saber antes? (opcional)</label>
+        <textarea id="mensaje" name="mensaje" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Reservar llamada</button>
+      <p id="estado" class="estado" role="status"></p>
+    </form>
+  </main>
+
+  <footer class="site-footer">
+    <nav class="legales"><a href="terminos.html">Términos</a><a href="privacidad.html">Privacidad</a><a href="soporte.html">Soporte y quejas</a></nav>
+    <p>© <span id="anio"></span> Yamilet Abdalh</p>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="legal.js"></script>
+  <script>
+    (function () {
+      var cfg = window.PORTFOLIO_CONFIG || {};
+      var API = "/.netlify/functions/registrar";
+      var form = document.getElementById("form-llamada");
+      var estado = document.getElementById("estado");
+      var cajaDias = document.getElementById("dias");
+      var cajaHoras = document.getElementById("horas");
+      var elegido = null, porDia = {};
+      var zonaCliente = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      var mismaZona = zonaCliente === "America/New_York";
+
+      function aviso(txt, clase) { estado.textContent = txt; estado.className = "estado " + (clase || ""); }
+      function nombreDia(fecha) {
+        return new Date(fecha + "T12:00:00Z").toLocaleDateString("es-ES", { weekday: "short", day: "numeric", month: "short", timeZone: "UTC" });
+      }
+      function horaLocal(iso) {
+        return new Date(iso).toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit" });
+      }
+
+      function pintarHoras(fecha) {
+        cajaHoras.innerHTML = "";
+        elegido = null;
+        porDia[fecha].forEach(function (h) {
+          var b = document.createElement("button");
+          b.type = "button";
+          b.className = "opcion";
+          b.innerHTML = h.hora + (mismaZona ? "" : '<small>' + horaLocal(h.inicio) + " tu hora</small>");
+          b.addEventListener("click", function () {
+            cajaHoras.querySelectorAll(".opcion").forEach(function (x) { x.classList.remove("activa"); });
+            b.classList.add("activa");
+            elegido = h;
+          });
+          cajaHoras.appendChild(b);
+        });
+      }
+
+      function cargar() {
+        fetch(API + "?accion=huecos")
+          .then(function (r) { return r.json(); })
+          .then(function (d) {
+            if (!d.ok) throw new Error(d.error);
+            porDia = {};
+            d.huecos.forEach(function (h) { (porDia[h.fecha] = porDia[h.fecha] || []).push(h); });
+            var fechas = Object.keys(porDia).sort();
+            document.getElementById("zona-txt").textContent = "(hora de Nueva York" + (mismaZona ? ")" : "; debajo, tu hora local)");
+            cajaDias.innerHTML = "";
+            if (!fechas.length) { cajaDias.innerHTML = '<span class="cargando">No quedan horarios libres estas dos semanas. Escríbeme desde el formulario de contacto.</span>'; return; }
+            fechas.forEach(function (f, i) {
+              var b = document.createElement("button");
+              b.type = "button";
+              b.className = "opcion";
+              b.textContent = nombreDia(f);
+              b.addEventListener("click", function () {
+                cajaDias.querySelectorAll(".opcion").forEach(function (x) { x.classList.remove("activa"); });
+                b.classList.add("activa");
+                pintarHoras(f);
+              });
+              cajaDias.appendChild(b);
+              if (i === 0) b.click();
+            });
+          })
+          .catch(function () {
+            cajaDias.innerHTML = '<span class="cargando">No se pudieron cargar los horarios. <a href="./#contacto">Escríbeme aquí</a> y te propongo una hora.</span>';
+            cajaHoras.innerHTML = "";
+          });
+      }
+
+      function enlaceCalendario(h, nombre) {
+        var ini = new Date(h.inicio), fin = new Date(ini.getTime() + 20 * 60000);
+        var f = function (d) { return d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, ""); };
+        return "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+          "&text=" + encodeURIComponent("Llamada con Yamilet Abdalh") +
+          "&dates=" + f(ini) + "/" + f(fin) +
+          "&details=" + encodeURIComponent("Videollamada gratuita de 20 minutos. Yamilet te enviará el enlace por email.");
+      }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var d = new FormData(form);
+        var dato = function (k) { return String(d.get(k) || "").trim(); };
+        if (!elegido) return aviso("Elige un día y una hora.", "error");
+        if (!dato("nombre") || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(dato("email"))) return aviso("Escribe tu nombre y un email válido.", "error");
+
+        var boton = form.querySelector('button[type="submit"]');
+        boton.disabled = true;
+        aviso("Reservando…");
+        var datos = {
+          tipo: "llamada", fecha: elegido.fecha, hora: elegido.hora, nombre: dato("nombre"), email: dato("email"),
+          telefono: dato("telefono"), tema: dato("tema"), mensaje: dato("mensaje"), botcheck: d.get("botcheck") ? 1 : 0,
+        };
+        fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(datos) })
+          .then(function (r) { return r.json(); })
+          .then(function (res) {
+            if (!res.ok) { aviso(res.error || "No se pudo reservar.", "error"); boton.disabled = false; cargar(); return; }
+            var cuando = nombreDia(elegido.fecha) + " a las " + elegido.hora + " (Nueva York)" + (mismaZona ? "" : " · " + horaLocal(elegido.inicio) + " tu hora");
+            // Aviso por email a Yamilet
+            if (cfg.web3formsKey) {
+              fetch("https://api.web3forms.com/submit", {
+                method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
+                body: JSON.stringify({
+                  access_key: cfg.web3formsKey, subject: "📞 Llamada reservada: " + elegido.fecha + " " + elegido.hora + " — " + datos.nombre,
+                  from_name: datos.nombre, name: datos.nombre, email: datos.email, telefono: datos.telefono,
+                  tema: datos.tema, cuando: cuando, message: datos.mensaje || "(sin mensaje)",
+                }),
+              }).catch(function () {});
+            }
+            form.innerHTML =
+              '<h2 style="font-size:1.6rem">¡Llamada reservada! ✅</h2>' +
+              '<p style="color:var(--muted)"><b style="color:var(--text)">' + cuando + "</b></p>" +
+              '<p style="color:var(--muted)">Te enviaré el enlace de la videollamada a <b style="color:var(--text)">' + datos.email.replace(/</g, "&lt;") + "</b> antes de la cita.</p>" +
+              '<p class="legal-volver"><a class="btn btn-primary" target="_blank" rel="noopener" href="' + enlaceCalendario(elegido) + '">Añadir a mi calendario</a> <a class="btn btn-ghost" href="./">Volver a la web</a></p>';
+          })
+          .catch(function () { aviso("Error de red. Inténtalo de nuevo.", "error"); boton.disabled = false; });
+      });
+
+      cargar();
+    })();
+  </script>
+</body>
+</html>

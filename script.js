@@ -393,6 +393,13 @@ form.addEventListener("submit", function (e) {
   estado.textContent = "Enviando…";
   estado.className = "estado";
 
+  // Agente de clientes: guarda el contacto en el registro (panel.html)
+  fetch("/.netlify/functions/registrar", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ tipo: "lead", nombre: nombre, email: email, mensaje: mensaje, botcheck: d.get("botcheck") ? 1 : 0 }),
+  }).catch(function () {});
+
   enviarWeb3({
     subject: "Nuevo mensaje desde el portfolio",
     from_name: nombre,

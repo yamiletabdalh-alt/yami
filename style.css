@@ -44,6 +44,7 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+[hidden] { display: none !important; }
 html { scroll-behavior: smooth; }
 body {
   font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -710,6 +711,7 @@ main { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem; }
   border-radius: 999px; padding: 0.3rem 0.7rem;
 }
 .chat-chip:hover { background: color-mix(in srgb, var(--accent) 12%, transparent); }
+a.chat-chip { text-decoration: none; font-weight: 600; }
 .chat-form { display: flex; gap: 0.5rem; padding: 0.7rem; border-top: 1px solid var(--border); }
 .chat-form input { flex: 1; background: var(--bg); border: 1px solid var(--border-2); border-radius: 12px; padding: 0.6rem 0.75rem; color: var(--text); font: inherit; }
 .chat-form input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
@@ -729,6 +731,35 @@ main { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem; }
 .site-footer .legales { display: flex; gap: 1.1rem; justify-content: center; flex-wrap: wrap; font-size: 0.82rem; }
 .site-footer .legales a { color: var(--muted); }
 .site-footer .legales a:hover { color: var(--accent); }
+
+/* ===== Páginas con formulario (llamada, soporte) ===== */
+.pagina-form { max-width: 760px; margin: 0 auto; padding: 3.5rem 1.5rem 4rem; }
+.pagina-form h1 { font-size: clamp(2.1rem, 6vw, 3.2rem); font-weight: 800; margin: 0.8rem 0 1rem; }
+.pagina-form .lead { margin-bottom: 2rem; }
+.dos { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 560px) { .dos { grid-template-columns: 1fr; } }
+.etiqueta { font-size: 0.88rem; font-weight: 600; }
+.etiqueta small { color: var(--muted); font-weight: 400; }
+.selector { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.opcion {
+  font: inherit; font-size: 0.88rem; cursor: pointer; display: grid; justify-items: center; gap: 0.1rem;
+  background: color-mix(in srgb, var(--bg) 60%, transparent); color: var(--text);
+  border: 1px solid var(--border-2); border-radius: 12px; padding: 0.55rem 0.9rem; text-transform: capitalize;
+}
+.opcion small { font-size: 0.7rem; color: var(--muted); text-transform: none; }
+.opcion:hover { border-color: var(--accent); }
+.opcion.activa { background: var(--grad); border-color: transparent; color: #fff; }
+.opcion.activa small { color: rgba(255,255,255,.85); }
+.cargando { color: var(--muted); font-size: 0.9rem; }
+.atajos { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.8rem; margin-bottom: 1.6rem; }
+.atajo {
+  display: grid; gap: 0.25rem; text-decoration: none; padding: 1rem 1.1rem; border-radius: 16px;
+  background: var(--surface); border: 1px solid var(--border); color: var(--text);
+}
+.atajo span { color: var(--muted); font-size: 0.86rem; }
+.atajo:hover { border-color: var(--accent); }
+.atajo[hidden] { display: none; }
+.contacto-botones { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.4rem; }
 
 /* ===== Páginas legales ===== */
 .legal { max-width: 760px; margin: 0 auto; padding: 3.5rem 1.5rem 4rem; }

@@ -46,12 +46,12 @@ window.PORTFOLIO_CONFIG = {
   /* Portal de clientes de Stripe (para que cancelen o cambien de
      tarjeta solos). Stripe -> Configuración -> Facturación ->
      Portal de clientes -> copia el enlace "billing.stripe.com/p/login/...". */
-  portalClientes: "",
+  portalClientes: "https://billing.stripe.com/p/login/fZu00k1pH6uybnIdK3cAo00",
 
   pagos: {
-    esencial: "https://buy.stripe.com/test_bJedRafou4Jf57h9b73cc00",
-    negocio:  "https://buy.stripe.com/test_4gM28s2BIfnT2Z98733cc01",
-    pro:      "https://buy.stripe.com/test_cNidRa2BIa3zfLV8733cc02"
+    esencial: "https://buy.stripe.com/fZu00k1pH6uybnIdK3cAo00",
+    negocio:  "https://buy.stripe.com/9B614o1pHdX04Zk0XhcAo01",
+    pro:      "https://buy.stripe.com/3cI7sMb0hg583VgfSbcAo02"
   },
 
 
