@@ -9,9 +9,13 @@
    tengas tu primer cliente, añade su ficha arriba del todo (con su
    permiso para nombrarlo, o anonimizado: "Consulta de psicología").
 
-   imagen (opcional): foto de la ficha, p. ej. "img/mi-proyecto.jpg"
-   (mejor en horizontal, proporción 16:10). Sin imagen se muestra el
-   icono en grande. "credito" pone un pie pequeño sobre la foto.
+   escena (opcional): maqueta animada de script.js que se muestra en
+   la ficha. Valores: "web", "chat", "informe", "marca", "canal",
+   "reservas". "imagenAlt" describe lo que se ve (para lectores de
+   pantalla).
+   imagen (opcional, si no hay escena): foto de la ficha, p. ej.
+   "img/mi-proyecto.jpg" (horizontal, proporción 16:10). Sin escena ni
+   imagen se muestra el icono en grande. "credito" pone un pie pequeño.
 
    categoria: define en qué filtro aparece. Valores posibles:
      "diseno"   -> Diseño
@@ -24,8 +28,8 @@ window.PROYECTOS = [
 
   {
     icono: "🌐",
-    imagen: "img/proyecto-web.jpg",
-    imagenAlt: "Portada de la web de Yamilet Abdalh",
+    escena: "web",
+    imagenAlt: "La web de Yamilet Abdalh dentro de una ventana del navegador, desplazándose de arriba abajo",
     categoria: "diseno",
     titulo: "Mi web profesional, de cero a publicada",
     cliente: "Proyecto propio",
@@ -42,8 +46,8 @@ window.PROYECTOS = [
 
   {
     icono: "🤖",
-    imagen: "img/proyecto-asistente.jpg",
-    imagenAlt: "El asistente con IA respondiendo a una pregunta sobre precios",
+    escena: "chat",
+    imagenAlt: "Un móvil con el asistente con IA respondiendo preguntas sobre precios y webs para terapeutas",
     categoria: "ia",
     titulo: "Asistente con IA que atiende a mis visitantes",
     cliente: "Proyecto propio",
@@ -59,6 +63,8 @@ window.PROYECTOS = [
 
   {
     icono: "📊",
+    escena: "informe",
+    imagenAlt: "Un móvil recibe a las 7:00 la notificación del informe diario de visitas, junto a una gráfica de ejemplo",
     categoria: "ia",
     titulo: "Informe diario automático de visitas",
     cliente: "Proyecto propio",
@@ -74,8 +80,8 @@ window.PROYECTOS = [
 
   {
     icono: "🎨",
-    imagen: "img/redes-con-ia-logo.jpg",
-    imagenAlt: "Logo de Redes con IA: botón de play amarillo sobre círculo morado y rosa",
+    escena: "marca",
+    imagenAlt: "Logo de Redes con IA girando en 3D junto a su paleta de colores: morado, rosa, naranja y amarillo",
     categoria: "diseno",
     titulo: "Identidad visual de «Redes con IA»",
     cliente: "Proyecto propio",
@@ -91,8 +97,8 @@ window.PROYECTOS = [
 
   {
     icono: "📱",
-    imagen: "img/redes-con-ia-banner.jpg",
-    imagenAlt: "Banner del canal Redes con IA: degradado morado, rosa y naranja",
+    escena: "canal",
+    imagenAlt: "Página del canal de YouTube Redes con IA con su banner, logo y botón de suscribirse",
     categoria: "redes",
     titulo: "Lanzamiento del canal «Redes con IA»",
     cliente: "Proyecto propio",
@@ -108,8 +114,8 @@ window.PROYECTOS = [
 
   {
     icono: "🌿",
-    imagen: "https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=960&h=600&q=75",
-    imagenAlt: "Dos mujeres conversando en una mesa, en un ambiente tranquilo",
+    escena: "reservas",
+    imagenAlt: "Un móvil reservando una sesión de terapia: elige día y hora y recibe la confirmación, sobre la foto de una consulta",
     credito: "Foto ilustrativa · Unsplash",
     categoria: "terapias",
     titulo: "Web con reservas para terapeutas",

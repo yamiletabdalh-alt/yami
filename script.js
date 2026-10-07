@@ -97,20 +97,104 @@ document.querySelectorAll("[data-cuenta]").forEach(function (c) { obsContador.ob
 var proyectos = window.PROYECTOS || [];
 var lista = document.getElementById("lista-proyectos");
 
+// ===== Maquetas animadas de cada proyecto (campo "escena" en proyectos.js) =====
+// Los elementos con data-t aparecen a los X milisegundos (y data-fin los
+// oculta); el contenedor data-secuencia indica cada cuánto se repite.
+var FOTO_TERAPIA = "https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=960&h=600&q=75";
+var ESCENAS = {
+  web: function () {
+    return '<div class="esc esc-web">' +
+      '<div class="navegador">' +
+        '<div class="nav-barra"><i></i><i></i><i></i><span>yamilet-abdalh-web.netlify.app</span></div>' +
+        '<div class="nav-pantalla" style="background-image:url(img/web-completa.jpg)"></div>' +
+      "</div></div>";
+  },
+  chat: function () {
+    return '<div class="esc esc-chat">' +
+      '<img class="esc-fondo" src="img/proyecto-web.jpg" alt="" loading="lazy">' +
+      '<div class="movil"><div class="movil-pantalla" data-secuencia="11000">' +
+        '<div class="m-cab"><b>Asistente de Yamilet</b><span>● Responde al momento</span></div>' +
+        '<div class="m-msgs" data-t="4300">' +
+          '<p class="m-msg yo" data-t="400">¿Cuánto cuestan los planes?</p>' +
+          '<p class="m-msg bot" data-t="1100"><span class="dots" data-t="1100" data-fin="2400"><i></i><i></i><i></i></span>' +
+            '<span class="txt" data-t="2400">Esencial $15, Negocio $35 y Pro $65 al mes. Sin permanencia 🙂</span></p>' +
+          '<p class="m-msg yo" data-t="4400">¿Haces webs para terapeutas?</p>' +
+          '<p class="m-msg bot" data-t="5100"><span class="dots" data-t="5100" data-fin="6400"><i></i><i></i><i></i></span>' +
+            '<span class="txt" data-t="6400">Sí: web con reservas online y recordatorios automáticos.</span></p>' +
+        "</div>" +
+      "</div></div></div>";
+  },
+  informe: function () {
+    var barras = [38, 55, 47, 70, 62, 84, 100].map(function (h, i) {
+      return '<i style="--h:' + h + "%;--d:" + (i * 0.12) + 's"></i>';
+    }).join("");
+    return '<div class="esc esc-informe">' +
+      '<div class="grafica"><b>Visitas · últimos 7 días</b><div class="barras">' + barras + "</div><small>Vista de ejemplo</small></div>" +
+      '<div class="movil"><div class="movil-pantalla bloqueo" data-secuencia="8000">' +
+        '<div class="b-hora">7:00</div><div class="b-fecha">Buenos días</div>' +
+        '<div class="notif" data-t="900"><b>GitHub · ahora</b><span>📊 Informe diario de visitas</span>' +
+          "<small>@yamiletabdalh-alt aquí tienes el informe de hoy 👇</small></div>" +
+      "</div></div></div>";
+  },
+  marca: function () {
+    return '<div class="esc esc-marca">' +
+      '<div class="marca-logo"><img src="img/redes-con-ia-logo-cuadrado.jpg" alt="" loading="lazy"></div>' +
+      '<div class="marca-paleta">' +
+        ["#7b2ff7", "#f0157a", "#ff7a1a", "#ffe14d"].map(function (c, i) {
+          return '<span style="--c:' + c + ";--d:" + (i * 0.25) + 's"><i></i>' + c + "</span>";
+        }).join("") +
+      "</div>" +
+      '<div class="marca-tipo">Aa<small>Tipografía</small></div>' +
+    "</div>";
+  },
+  canal: function () {
+    return '<div class="esc esc-canal">' +
+      '<div class="navegador">' +
+        '<div class="nav-barra"><i></i><i></i><i></i><span>youtube.com/@redesconia-oficial</span></div>' +
+        '<div class="canal-cuerpo">' +
+          '<div class="canal-banner"></div>' +
+          '<div class="canal-info"><img src="img/redes-con-ia-logo-cuadrado.jpg" alt="" loading="lazy">' +
+            "<div><b>Redes con IA</b><span>@redesconia-oficial</span></div>" +
+            '<span class="canal-sub">Suscribirse</span></div>' +
+          '<div class="canal-tabs"><span class="on">Inicio</span><span>Vídeos</span><span>Shorts</span></div>' +
+        "</div>" +
+      "</div></div>";
+  },
+  reservas: function () {
+    var dias = [["L", 12], ["M", 13], ["X", 14], ["J", 15], ["V", 16]].map(function (d, i) {
+      return '<span class="dia"' + (i === 2 ? ' data-t="900"' : "") + ">" + d[0] + "<b>" + d[1] + "</b></span>";
+    }).join("");
+    return '<div class="esc esc-reservas">' +
+      '<img class="esc-fondo foto" src="' + FOTO_TERAPIA + '" alt="" loading="lazy">' +
+      '<div class="movil"><div class="movil-pantalla" data-secuencia="8500">' +
+        '<div class="r-cab"><b>Reserva tu sesión</b><span>Terapia individual · 50 min</span></div>' +
+        '<div class="r-dias">' + dias + "</div>" +
+        '<div class="r-horas"><span class="hora">10:00</span><span class="hora" data-t="1900">11:30</span><span class="hora">17:00</span></div>' +
+        '<div class="r-btn" data-t="2900">Confirmar cita</div>' +
+        '<div class="r-ok" data-t="3500"><b>✓ Cita confirmada</b><small>Te recordamos 24 h antes</small></div>' +
+      "</div></div></div>";
+  },
+};
+
 function ficha(p) {
   var tags = (p.stack || []).map(function (t) { return '<span class="tag">' + t + "</span>"; }).join("");
-  var visual = p.imagen
-    ? '<img src="' + p.imagen + '" alt="' + (p.imagenAlt || p.titulo) + '" loading="lazy">' +
-      (p.credito ? '<span class="credito">' + p.credito + "</span>" : "")
-    : '<span class="icono-grande" aria-hidden="true">' + (p.icono || "✦") + "</span>";
+  var visual, clase = "proyecto-img";
+  if (p.escena && ESCENAS[p.escena]) {
+    visual = ESCENAS[p.escena]();
+  } else if (p.imagen) {
+    visual = '<img src="' + p.imagen + '" alt="' + (p.imagenAlt || p.titulo) + '" loading="lazy">';
+  } else {
+    visual = '<span class="icono-grande" aria-hidden="true">' + (p.icono || "✦") + "</span>";
+    clase += " sin-foto";
+  }
+  if (p.credito) visual += '<span class="credito">' + p.credito + "</span>";
+  var etiqueta = p.escena ? ' role="img" aria-label="' + (p.imagenAlt || p.titulo) + '"' : "";
   return (
     '<article class="proyecto reveal" data-tilt data-cat="' + p.categoria + '">' +
-      '<div class="proyecto-img' + (p.imagen ? "" : " sin-foto") + '">' + visual +
-        '<span class="anio">' + p.anio + "</span>" +
-      "</div>" +
+      '<div class="' + clase + '"' + etiqueta + ">" + visual + "</div>" +
       '<div class="proyecto-cuerpo">' +
         "<h3>" + p.titulo + "</h3>" +
-        '<p class="cliente">' + p.cliente + " · " + p.sector + "</p>" +
+        '<p class="cliente">' + p.cliente + " · " + p.sector + " · " + p.anio + "</p>" +
         "<p>" + p.desc + "</p>" +
         '<div class="tags">' + tags + "</div>" +
         '<details class="caso">' +
@@ -154,6 +238,36 @@ function pintarProyectos(cat) {
     : '<p style="color:var(--muted)">No hay proyectos en esta categoría todavía.</p>';
   observarReveal();
   activarTilt();
+  iniciarEscenas();
+}
+
+// Reproduce las secuencias (chat, reservas, notificación) solo mientras se ven
+function iniciarEscenas() {
+  var reducir = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.querySelectorAll("[data-secuencia]:not([data-sec-on])").forEach(function (sec) {
+    sec.setAttribute("data-sec-on", "");
+    var pasos = sec.querySelectorAll("[data-t]");
+    if (reducir || !("IntersectionObserver" in window)) {
+      pasos.forEach(function (el) { if (!el.hasAttribute("data-fin")) el.classList.add("on"); });
+      return;
+    }
+    var ciclo = parseInt(sec.dataset.secuencia, 10) || 10000, timers = [], activo = false;
+    function parar() { timers.forEach(clearTimeout); timers = []; }
+    function reproducir() {
+      parar();
+      pasos.forEach(function (el) { el.classList.remove("on"); });
+      pasos.forEach(function (el) {
+        timers.push(setTimeout(function () { el.classList.add("on"); }, +el.dataset.t));
+        if (el.dataset.fin) timers.push(setTimeout(function () { el.classList.remove("on"); }, +el.dataset.fin));
+      });
+      timers.push(setTimeout(function () { if (activo) reproducir(); }, ciclo));
+    }
+    new IntersectionObserver(function (e) {
+      var ve = e[0].isIntersecting;
+      if (ve && !activo) { activo = true; reproducir(); }
+      else if (!ve && activo) { activo = false; parar(); }
+    }, { threshold: 0.25 }).observe(sec);
+  });
 }
 
 document.getElementById("filtros").addEventListener("click", function (e) {
