@@ -58,9 +58,11 @@ window.PORTFOLIO_CONFIG = {
 
   /* --- REDES (el pie de página) — pon la URL o deja "" para ocultar --- */
   redes: {
-    github:    "",
+    youtube:   "https://www.youtube.com/@redesconia-oficial",
+    instagram: "https://www.instagram.com/redesconia.oficial/",
+    tiktok:    "",
     linkedin:  "",
-    instagram: "",
+    github:    "",
     email:     ""
   }
 

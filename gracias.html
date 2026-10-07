@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>¡Gracias! Empecemos — Yamilet Abdalh</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0d0714">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .inicio { max-width: 720px; margin: 0 auto; padding: 3.5rem 1.5rem 5rem; }
+    .inicio h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); font-weight: 800; margin: 0.8rem 0 1rem; }
+    .inicio .lead { margin-bottom: 2rem; }
+    .pasos-mini { list-style: none; display: grid; gap: 0.6rem; margin-bottom: 2.2rem; color: var(--muted); }
+    .pasos-mini b { color: var(--text); }
+    .dos { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 560px) { .dos { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="fondo" aria-hidden="true"><span></span><span></span><span></span></div>
+  <header class="site-header">
+    <a href="./" class="logo">Yamilet<span>.</span></a>
+  </header>
+
+  <main class="inicio">
+    <p class="eyebrow"><span class="punto"></span>Pago recibido</p>
+    <h1>¡Gracias! <span class="grad">Empecemos</span> tu proyecto 🎉</h1>
+    <p class="lead">Tu suscripción<span id="plan-txt"></span> está activa. Te llegará el recibo de Stripe a tu email. Rellena este formulario (5 minutos) para que pueda empezar a trabajar en tu web.</p>
+
+    <ol class="pasos-mini">
+      <li><b>1.</b> Me cuentas tu negocio aquí abajo.</li>
+      <li><b>2.</b> En 24-48 h te escribo con la propuesta y lo que necesito de ti.</li>
+      <li><b>3.</b> En 1-2 semanas tienes la primera versión publicada.</li>
+    </ol>
+
+    <form id="form-inicio" class="form" novalidate>
+      <input type="checkbox" name="botcheck" class="oculto-bot" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="dos">
+        <div class="campo">
+          <label for="nombre">Tu nombre</label>
+          <input type="text" id="nombre" name="nombre" required>
+        </div>
+        <div class="campo">
+          <label for="email">Email (el mismo del pago)</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+      </div>
+      <div class="dos">
+        <div class="campo">
+          <label for="negocio">Nombre del negocio</label>
+          <input type="text" id="negocio" name="negocio" required>
+        </div>
+        <div class="campo">
+          <label for="plan">Plan</label>
+          <select id="plan" name="plan">
+            <option>Esencial</option>
+            <option>Negocio</option>
+            <option>Pro</option>
+          </select>
+        </div>
+      </div>
+      <div class="campo">
+        <label for="necesidad">¿Qué necesitas? (web, reservas, redes, asistente con IA…)</label>
+        <textarea id="necesidad" name="necesidad" rows="4" required></textarea>
+      </div>
+      <div class="campo">
+        <label for="enlaces">Tu web o redes actuales (si tienes)</label>
+        <input type="text" id="enlaces" name="enlaces" placeholder="instagram.com/tunegocio">
+      </div>
+      <div class="campo">
+        <label for="estilo">Colores, estilo o webs que te gusten</label>
+        <textarea id="estilo" name="estilo" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Enviar y empezar</button>
+      <p id="inicio-estado" class="estado" role="status"></p>
+    </form>
+  </main>
+
+  <script src="config.js"></script>
+  <script>
+    (function () {
+      var cfg = window.PORTFOLIO_CONFIG || {};
+      var nombres = { esencial: "Esencial", negocio: "Negocio", pro: "Pro" };
+      var plan = nombres[(new URLSearchParams(location.search).get("plan") || "").toLowerCase()];
+      if (plan) {
+        document.getElementById("plan").value = plan;
+        document.getElementById("plan-txt").textContent = " al plan " + plan;
+      }
+
+      var form = document.getElementById("form-inicio");
+      var estado = document.getElementById("inicio-estado");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var d = new FormData(form);
+        var dato = function (k) { return String(d.get(k) || "").trim(); };
+        if (!dato("nombre") || !dato("email") || !dato("negocio") || !dato("necesidad")) {
+          estado.textContent = "Rellena nombre, email, negocio y qué necesitas, por favor.";
+          estado.className = "estado error";
+          return;
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(dato("email"))) {
+          estado.textContent = "El email no parece válido.";
+          estado.className = "estado error";
+          return;
+        }
+        var boton = form.querySelector('button[type="submit"]');
+        boton.disabled = true;
+        estado.textContent = "Enviando…";
+        estado.className = "estado";
+        fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            access_key: cfg.web3formsKey,
+            subject: "🎉 Nuevo cliente (plan " + dato("plan") + "): " + dato("negocio"),
+            from_name: dato("nombre"),
+            name: dato("nombre"),
+            email: dato("email"),
+            negocio: dato("negocio"),
+            plan: dato("plan"),
+            necesidad: dato("necesidad"),
+            enlaces: dato("enlaces"),
+            estilo: dato("estilo"),
+            botcheck: d.get("botcheck") ? true : false
+          })
+        })
+          .then(function (r) { return r.json(); })
+          .then(function (j) {
+            if (j.success) {
+              form.innerHTML = '<h2 style="font-size:1.6rem">¡Recibido! 🙌</h2><p style="color:var(--muted)">Te escribo en menos de 24-48 h a tu email con los siguientes pasos.</p><a class="btn btn-ghost" href="./">Volver a la web</a>';
+            } else {
+              estado.textContent = "No se pudo enviar: " + (j.message || "inténtalo de nuevo.");
+              estado.className = "estado error";
+              boton.disabled = false;
+            }
+          })
+          .catch(function () {
+            estado.textContent = "Error de red. Revisa tu conexión e inténtalo de nuevo.";
+            estado.className = "estado error";
+            boton.disabled = false;
+          });
+      });
+    })();
+  </script>
+</body>
+</html>

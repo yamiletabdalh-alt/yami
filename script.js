@@ -49,7 +49,9 @@ btnTema.addEventListener("click", function () {
   lsSet("tema", nuevo);
 });
 
-// ===== Barra promocional =====
+// ===== Barra promocional (con el mes actual) =====
+var mesPromo = document.getElementById("mes-promo");
+if (mesPromo) mesPromo.textContent = new Date().toLocaleDateString("es-ES", { month: "long" });
 var promo = document.getElementById("promo");
 if (lsGet("promo-cerrada") === "1") promo.hidden = true;
 document.getElementById("cerrar-promo").addEventListener("click", function () {
@@ -97,25 +99,52 @@ var lista = document.getElementById("lista-proyectos");
 
 function ficha(p) {
   var tags = (p.stack || []).map(function (t) { return '<span class="tag">' + t + "</span>"; }).join("");
+  var visual = p.imagen
+    ? '<img src="' + p.imagen + '" alt="' + (p.imagenAlt || p.titulo) + '" loading="lazy">' +
+      (p.credito ? '<span class="credito">' + p.credito + "</span>" : "")
+    : '<span class="icono-grande" aria-hidden="true">' + (p.icono || "✦") + "</span>";
   return (
-    '<article class="proyecto reveal" data-cat="' + p.categoria + '">' +
-      '<div class="proyecto-top">' +
-        '<span class="icono" aria-hidden="true">' + (p.icono || "•") + "</span>" +
+    '<article class="proyecto reveal" data-tilt data-cat="' + p.categoria + '">' +
+      '<div class="proyecto-img' + (p.imagen ? "" : " sin-foto") + '">' + visual +
         '<span class="anio">' + p.anio + "</span>" +
       "</div>" +
-      "<h3>" + p.titulo + "</h3>" +
-      '<p class="cliente">' + p.cliente + " · " + p.sector + "</p>" +
-      "<p>" + p.desc + "</p>" +
-      '<div class="tags">' + tags + "</div>" +
-      '<details class="caso">' +
-        "<summary>Ver el caso</summary>" +
-        "<p><b>Reto:</b> " + p.problema + "</p>" +
-        "<p><b>Qué hice:</b> " + p.solucion + "</p>" +
-        "<p><b>Mi rol:</b> " + p.rol + "</p>" +
-      "</details>" +
-      '<p class="resultado">📈 ' + p.resultado + "</p>" +
+      '<div class="proyecto-cuerpo">' +
+        "<h3>" + p.titulo + "</h3>" +
+        '<p class="cliente">' + p.cliente + " · " + p.sector + "</p>" +
+        "<p>" + p.desc + "</p>" +
+        '<div class="tags">' + tags + "</div>" +
+        '<details class="caso">' +
+          "<summary>Ver el caso</summary>" +
+          "<p><b>Reto:</b> " + p.problema + "</p>" +
+          "<p><b>Qué hice:</b> " + p.solucion + "</p>" +
+          "<p><b>Mi rol:</b> " + p.rol + "</p>" +
+        "</details>" +
+        '<p class="resultado">' + (p.icono || "✦") + " " + p.resultado + "</p>" +
+      "</div>" +
     "</article>"
   );
+}
+
+// ===== Efecto 3D: las tarjetas se inclinan siguiendo el ratón =====
+var tiltActivo = matchMedia("(hover: hover) and (pointer: fine)").matches &&
+                 !matchMedia("(prefers-reduced-motion: reduce)").matches;
+function activarTilt() {
+  if (!tiltActivo) return;
+  document.querySelectorAll("[data-tilt]:not([data-tilt-on])").forEach(function (el) {
+    el.setAttribute("data-tilt-on", "");
+    el.addEventListener("pointermove", function (e) {
+      var r = el.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      el.style.setProperty("--rx", ((0.5 - y) * 9).toFixed(2) + "deg");
+      el.style.setProperty("--ry", ((x - 0.5) * 11).toFixed(2) + "deg");
+      el.style.setProperty("--gx", (x * 100).toFixed(1) + "%");
+      el.style.setProperty("--gy", (y * 100).toFixed(1) + "%");
+    });
+    el.addEventListener("pointerleave", function () {
+      el.style.setProperty("--rx", "0deg");
+      el.style.setProperty("--ry", "0deg");
+    });
+  });
 }
 
 function pintarProyectos(cat) {
@@ -124,6 +153,7 @@ function pintarProyectos(cat) {
     ? visibles.map(ficha).join("")
     : '<p style="color:var(--muted)">No hay proyectos en esta categoría todavía.</p>';
   observarReveal();
+  activarTilt();
 }
 
 document.getElementById("filtros").addEventListener("click", function (e) {
@@ -306,3 +336,4 @@ function observarReveal() {
 }
 document.querySelectorAll(".bloque, .stat").forEach(function (el) { el.classList.add("reveal"); });
 observarReveal();
+activarTilt();

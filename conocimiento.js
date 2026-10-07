@@ -69,7 +69,7 @@ CÓMO CONTACTAR: desde el formulario de contacto de la propia web. Respuesta en 
       respuesta: "Sí, Yamilet trabaja en remoto con clientes de cualquier país, con reuniones por videollamada." },
 
     { claves: ["soporte", "mantenimiento", "después de", "garantía", "actualizaciones"],
-      respuesta: "Incluye 30 días de correcciones sin coste tras el lanzamiento, y hay planes de mantenimiento mensual opcionales." },
+      respuesta: "Mientras tengas tu plan mensual activo, la web se mantiene al día y tienes soporte por email: 48 h en Esencial, 24 h en Negocio y prioridad máxima en Pro." },
 
     { claves: ["diseño", "logo", "logotipo", "identidad", "marca", "branding", "imagen"],
       respuesta: "Hace identidad visual completa: logo, colores, tipografías y plantillas para redes y documentos, con un manual de marca sencillo para que el equipo publique sin diseñar de cero." },

@@ -9,6 +9,10 @@
    tengas tu primer cliente, añade su ficha arriba del todo (con su
    permiso para nombrarlo, o anonimizado: "Consulta de psicología").
 
+   imagen (opcional): foto de la ficha, p. ej. "img/mi-proyecto.jpg"
+   (mejor en horizontal, proporción 16:10). Sin imagen se muestra el
+   icono en grande. "credito" pone un pie pequeño sobre la foto.
+
    categoria: define en qué filtro aparece. Valores posibles:
      "diseno"   -> Diseño
      "terapias" -> Terapias / bienestar
@@ -20,6 +24,8 @@ window.PROYECTOS = [
 
   {
     icono: "🌐",
+    imagen: "img/proyecto-web.jpg",
+    imagenAlt: "Portada de la web de Yamilet Abdalh",
     categoria: "diseno",
     titulo: "Mi web profesional, de cero a publicada",
     cliente: "Proyecto propio",
@@ -36,6 +42,8 @@ window.PROYECTOS = [
 
   {
     icono: "🤖",
+    imagen: "img/proyecto-asistente.jpg",
+    imagenAlt: "El asistente con IA respondiendo a una pregunta sobre precios",
     categoria: "ia",
     titulo: "Asistente con IA que atiende a mis visitantes",
     cliente: "Proyecto propio",
@@ -66,6 +74,8 @@ window.PROYECTOS = [
 
   {
     icono: "🎨",
+    imagen: "img/redes-con-ia-logo.jpg",
+    imagenAlt: "Logo de Redes con IA: botón de play amarillo sobre círculo morado y rosa",
     categoria: "diseno",
     titulo: "Identidad visual de «Redes con IA»",
     cliente: "Proyecto propio",
@@ -81,6 +91,8 @@ window.PROYECTOS = [
 
   {
     icono: "📱",
+    imagen: "img/redes-con-ia-banner.jpg",
+    imagenAlt: "Banner del canal Redes con IA: degradado morado, rosa y naranja",
     categoria: "redes",
     titulo: "Lanzamiento del canal «Redes con IA»",
     cliente: "Proyecto propio",
@@ -96,6 +108,9 @@ window.PROYECTOS = [
 
   {
     icono: "🌿",
+    imagen: "https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=960&h=600&q=75",
+    imagenAlt: "Dos mujeres conversando en una mesa, en un ambiente tranquilo",
+    credito: "Foto ilustrativa · Unsplash",
     categoria: "terapias",
     titulo: "Web con reservas para terapeutas",
     cliente: "Proyecto en desarrollo",

@@ -7,32 +7,40 @@
   <meta name="description" content="Yamilet Abdalh: identidad visual y diseño, webs y reservas para terapias, gestión de redes sociales y proyectos con inteligencia artificial. Planes mensuales sin permanencia.">
   <link rel="canonical" href="https://yamilet-abdalh-web.netlify.app/">
   <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0d0714">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Yamilet Abdalh — Diseño, redes sociales e IA">
   <meta property="og:description" content="Identidad visual, webs y reservas para terapias, gestión de redes sociales y proyectos con IA. Planes mensuales sin permanencia.">
   <meta property="og:url" content="https://yamilet-abdalh-web.netlify.app/">
+  <meta property="og:image" content="https://yamilet-abdalh-web.netlify.app/img/proyecto-web.jpg">
   <meta property="og:locale" content="es_ES">
   <meta name="twitter:card" content="summary_large_image">
-  <!-- Verificación de Google Search Console: pega aquí la etiqueta que te dé Google -->
-  <!-- <meta name="google-site-verification" content="TU-CODIGO"> -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+    { "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    } }
+  </script>
 </head>
 <body>
+  <div class="fondo" aria-hidden="true"><span></span><span></span><span></span></div>
   <div class="progreso" id="progreso"></div>
 
   <div class="promo" id="promo">
-    🎁 Plazas de septiembre abiertas — <a href="#contacto">reserva una llamada gratis de 20 min</a>
+    🎁 Plazas de <span id="mes-promo">este mes</span> abiertas — <a href="#contacto">reserva una llamada gratis de 20 min</a>
     <button id="cerrar-promo" aria-label="Cerrar aviso">×</button>
   </div>
 
   <header class="site-header">
     <a href="#inicio" class="logo">Yamilet<span>.</span></a>
     <nav>
+      <a href="#que-hago">Qué hago</a>
       <a href="#proyectos">Proyectos</a>
-      <a href="#servicios">Servicios</a>
+      <a href="#servicios">Planes</a>
       <a href="#opiniones">Opiniones</a>
       <a href="#contacto">Contacto</a>
       <span class="disponible">Disponible para proyectos</span>
@@ -41,18 +49,28 @@
   </header>
 
   <main>
+    <!-- ===== PORTADA ===== -->
     <section id="inicio" class="hero">
-      <p class="eyebrow">Diseño · Terapias · Redes sociales · IA</p>
-      <h1>Creo, cuido y <span class="rotativo" id="rotativo">optimizo</span> tu presencia digital</h1>
-      <p class="lead">Soy Yamilet Abdalh. Ayudo a marcas y a profesionales del bienestar con <strong>identidad visual y diseño</strong>, <strong>webs y reservas</strong>, <strong>gestión de redes sociales</strong> y <strong>proyectos con inteligencia artificial</strong>.</p>
-      <div class="cta-row">
-        <a href="#proyectos" class="btn btn-primary">Ver proyectos ↓</a>
-        <a href="#contacto" class="btn btn-ghost">Trabajemos juntos</a>
+      <div class="hero-texto">
+        <p class="eyebrow"><span class="punto"></span>Diseño · Terapias · Redes sociales · IA</p>
+        <h1>Creo, cuido y <span class="rotativo" id="rotativo">optimizo</span><br>tu presencia digital</h1>
+        <p class="lead">Soy Yamilet Abdalh. Ayudo a marcas y a profesionales del bienestar con <strong>identidad visual</strong>, <strong>webs con reservas</strong>, <strong>redes sociales</strong> y <strong>asistentes con inteligencia artificial</strong>.</p>
+        <div class="cta-row">
+          <a href="#servicios" class="btn btn-primary">Ver planes desde $15/mes</a>
+          <a href="#proyectos" class="btn btn-ghost">Ver proyectos ↓</a>
+        </div>
+        <div class="trust">
+          <span>Trabajo en remoto</span>
+          <span>Sin permanencia</span>
+          <span>Pago online seguro</span>
+        </div>
       </div>
-      <div class="trust">
-        <span>Trabajo en remoto</span>
-        <span>Sin permanencia</span>
-        <span>Precio cerrado sin sorpresas</span>
+
+      <div class="hero-visual">
+        <div id="escena-3d" class="escena-3d" aria-hidden="true"></div>
+        <div class="chip chip-1"><b>🤖 Asistente IA</b><span>Responde a tus clientes 24/7</span></div>
+        <div class="chip chip-2"><b>💳 Pagos online</b><span>Suscripción mensual automática</span></div>
+        <div class="chip chip-3"><b>📱 Redes sociales</b><span>Plan de contenidos</span></div>
       </div>
 
       <div class="stats" id="stats">
@@ -63,16 +81,47 @@
       </div>
     </section>
 
-    <section class="marcas">
-      <p>Sectores con los que trabajo</p>
-      <div class="marcas-pista">
-        <span>Bienestar</span><span>Salud</span><span>Comercio</span><span>Moda</span><span>Servicios</span>
+    <!-- ===== CINTA ===== -->
+    <div class="cinta-mov" aria-hidden="true">
+      <div class="cinta-pista">
+        <span>Identidad visual</span><span>Webs con reservas</span><span>Gestión de redes</span><span>Asistentes con IA</span><span>Automatización</span><span>Bienestar</span><span>Comercio</span><span>Servicios</span>
+        <span>Identidad visual</span><span>Webs con reservas</span><span>Gestión de redes</span><span>Asistentes con IA</span><span>Automatización</span><span>Bienestar</span><span>Comercio</span><span>Servicios</span>
+      </div>
+    </div>
+
+    <!-- ===== QUÉ HAGO ===== -->
+    <section id="que-hago" class="bloque">
+      <p class="eyebrow">Servicios</p>
+      <h2>Todo lo que tu negocio necesita para <span class="grad">verse y vender</span> en internet</h2>
+      <div class="areas">
+        <article class="area" data-tilt>
+          <span class="area-ico">🎨</span>
+          <h3>Diseño e identidad</h3>
+          <p>Logo, colores, tipografías y plantillas para redes y documentos. Una marca que se reconoce a primera vista.</p>
+        </article>
+        <article class="area" data-tilt>
+          <span class="area-ico">🌿</span>
+          <h3>Webs para terapias</h3>
+          <p>Webs cercanas para psicólogas y terapeutas, con reserva de sesiones online y recordatorios automáticos.</p>
+        </article>
+        <article class="area" data-tilt>
+          <span class="area-ico">📱</span>
+          <h3>Redes sociales</h3>
+          <p>Auditoría, plan de contenidos, diseño de publicaciones y programación en Instagram y TikTok.</p>
+        </article>
+        <article class="area" data-tilt>
+          <span class="area-ico">🤖</span>
+          <h3>Inteligencia artificial</h3>
+          <p>Asistentes que atienden a tus clientes día y noche, y automatizaciones que te ahorran horas cada semana.</p>
+        </article>
       </div>
     </section>
 
+    <!-- ===== PROYECTOS ===== -->
     <section id="proyectos" class="bloque">
+      <p class="eyebrow">Portfolio</p>
       <h2>Proyectos</h2>
-      <p class="sub">Una muestra de lo que hago en el día a día: identidad y diseño, webs y reservas para terapias, gestión de redes sociales y proyectos con IA. Abre "Ver el caso" en cada ficha para leer el reto, la solución y mi papel.</p>
+      <p class="sub">Trabajos reales hechos por mí. Abre "Ver el caso" en cada ficha para leer el reto, la solución y mi papel.</p>
       <div class="filtros" id="filtros">
         <button class="filtro activo" data-cat="todos">Todos</button>
         <button class="filtro" data-cat="diseno">Diseño</button>
@@ -83,35 +132,36 @@
       <div class="proyectos" id="lista-proyectos"></div>
     </section>
 
-    <section class="publicidad bloque">
-      <p class="aviso">Espacio publicitario</p>
-      <div class="anuncio anuncio-leaderboard">
-        <span class="patrocinado">Publicidad</span>
-        <b>Tu marca podría estar aquí</b>
-        <span>Formato leaderboard · 728 × 90 · visible en todas las páginas</span>
-        <a href="#contacto" class="btn btn-ghost">Anúnciate</a>
-      </div>
-      <div class="anuncios-fila">
-        <div class="anuncio">
-          <span class="patrocinado">Patrocinado</span>
-          <b>Hosting web para creativos</b>
-          <span>Aloja tu portfolio con SSL y despliegue automático.</span>
-          <a href="#" class="btn btn-primary">Probar gratis</a>
-        </div>
-        <div class="anuncio">
-          <span class="patrocinado">Publicidad</span>
-          <b>Espacio disponible</b>
-          <span>Rectángulo 300 × 250. Reserva mensual.</span>
-          <a href="#contacto" class="btn btn-ghost">Solicitar tarifas</a>
-        </div>
-      </div>
+    <!-- ===== CÓMO FUNCIONA ===== -->
+    <section id="como" class="bloque">
+      <p class="eyebrow">Proceso</p>
+      <h2>Empezar es así de <span class="grad">fácil</span></h2>
+      <ol class="pasos">
+        <li class="paso" data-tilt>
+          <span class="paso-num">1</span>
+          <h3>Eliges tu plan</h3>
+          <p>Pagas online con tarjeta de forma segura. La cuota se renueva sola cada mes y puedes cancelar cuando quieras.</p>
+        </li>
+        <li class="paso" data-tilt>
+          <span class="paso-num">2</span>
+          <h3>Me cuentas tu negocio</h3>
+          <p>Un formulario corto con lo que necesitas: colores, textos, fotos y enlaces. Si tienes dudas, el asistente te responde al momento.</p>
+        </li>
+        <li class="paso" data-tilt>
+          <span class="paso-num">3</span>
+          <h3>Tu web, publicada</h3>
+          <p>En 1-2 semanas tienes la primera versión en línea, y cada mes la mantengo y la mejoro dentro de tu plan.</p>
+        </li>
+      </ol>
     </section>
 
+    <!-- ===== PLANES ===== -->
     <section id="servicios" class="bloque">
+      <p class="eyebrow">Precios</p>
       <h2>Planes mensuales</h2>
       <p class="sub">Tu web hecha y mantenida por una cuota pequeña al mes. Sin permanencia, cancela cuando quieras. ¿Prefieres un proyecto puntual? Escríbeme y te lo presupuesto a medida.</p>
       <div class="planes">
-        <article class="plan">
+        <article class="plan" data-tilt>
           <h3>Esencial</h3>
           <p class="precio">$15 <small>/ mes</small></p>
           <ul>
@@ -122,8 +172,8 @@
           </ul>
           <button class="btn btn-ghost" data-plan="Esencial">Empezar</button>
         </article>
-        <article class="plan destacado">
-          <span class="cinta">El más elegido</span>
+        <article class="plan destacado" data-tilt>
+          <span class="cinta">El más completo por su precio</span>
           <h3>Negocio</h3>
           <p class="precio">$35 <small>/ mes</small></p>
           <ul>
@@ -134,7 +184,7 @@
           </ul>
           <button class="btn btn-primary" data-plan="Negocio">Empezar</button>
         </article>
-        <article class="plan">
+        <article class="plan" data-tilt>
           <h3>Pro</h3>
           <p class="precio">$65 <small>/ mes</small></p>
           <ul>
@@ -146,26 +196,30 @@
           <button class="btn btn-ghost" data-plan="Pro">Empezar</button>
         </article>
       </div>
-      <p class="planes-nota">Alta única: $0 · Precios en dólares · Impuestos no incluidos</p>
+      <p class="planes-nota">Alta única: $0 · Precios en dólares · Impuestos no incluidos · Pago seguro con Stripe</p>
       <p id="plan-msg" class="estado" role="status"></p>
     </section>
 
+    <!-- ===== OPINIONES (se oculta sola si no hay reseñas reales) ===== -->
     <section id="opiniones" class="bloque">
+      <p class="eyebrow">Opiniones</p>
       <h2>Lo que dicen los clientes</h2>
       <p class="sub">Reseñas de clientes reales.</p>
       <div class="opiniones" id="lista-opiniones"></div>
     </section>
 
+    <!-- ===== FAQ ===== -->
     <section id="faq" class="bloque">
+      <p class="eyebrow">Dudas</p>
       <h2>Preguntas frecuentes</h2>
       <div class="acordeon">
         <details>
           <summary>¿Cuánto tarda un proyecto?</summary>
-          <p>Una landing, una semana. Una web de soporte completa, entre 2 y 4 semanas según integraciones.</p>
+          <p>La primera versión de tu web se publica en 1-2 semanas. Una web con reservas o integraciones puede llevar 2-4 semanas.</p>
         </details>
         <details>
-          <summary>¿Qué incluye el soporte post-lanzamiento?</summary>
-          <p>30 días de correcciones sin coste y la opción de un plan de mantenimiento mensual con horas de cambios incluidas.</p>
+          <summary>¿Qué incluye el soporte?</summary>
+          <p>Mientras tengas tu plan activo, la web se mantiene al día y tienes soporte por email con el plazo de respuesta de tu plan.</p>
         </details>
         <details>
           <summary>¿Trabajas con clientes fuera de mi país?</summary>
@@ -173,15 +227,16 @@
         </details>
         <details>
           <summary>¿Cómo son los pagos?</summary>
-          <p>Los planes mensuales se cobran por adelantado cada mes y no tienen permanencia. En proyectos puntuales, 50 % al empezar y 50 % a la entrega.</p>
+          <p>Los planes mensuales se cobran por adelantado cada mes con tarjeta, de forma segura con Stripe, y no tienen permanencia. En proyectos puntuales, 50 % al empezar y 50 % a la entrega.</p>
         </details>
       </div>
     </section>
 
+    <!-- ===== BOLETÍN ===== -->
     <section id="boletin" class="bloque">
-      <div class="boletin reveal">
-        <h2>Consejos de UX y atención al cliente</h2>
-        <p>Un correo al mes con ideas prácticas para mejorar la experiencia de tus usuarios. Sin spam.</p>
+      <div class="boletin">
+        <h2>Ideas de diseño, redes e IA para tu negocio</h2>
+        <p>Un correo al mes con consejos prácticos que puedes aplicar en una tarde. Sin spam.</p>
         <form id="form-boletin" novalidate>
           <input type="checkbox" name="botcheck" class="oculto-bot" tabindex="-1" autocomplete="off" aria-hidden="true">
           <input type="email" id="email-boletin" placeholder="tu@email.com" aria-label="Tu email" required>
@@ -191,9 +246,18 @@
       </div>
     </section>
 
-    <section id="contacto" class="bloque">
-      <h2>Contacto</h2>
-      <p class="sub">Cuéntame qué necesitas y te respondo en menos de 24 h con una propuesta inicial.</p>
+    <!-- ===== CONTACTO ===== -->
+    <section id="contacto" class="bloque contacto">
+      <div class="contacto-texto">
+        <p class="eyebrow">Contacto</p>
+        <h2>¿Hablamos de tu <span class="grad">proyecto</span>?</h2>
+        <p class="sub">Cuéntame qué necesitas y te respondo en menos de 24 h con una propuesta inicial. La primera llamada de 20 minutos es gratis.</p>
+        <ul class="contacto-lista">
+          <li>✓ Propuesta en 24-48 h</li>
+          <li>✓ Precio cerrado, sin sorpresas</li>
+          <li>✓ ¿Dudas rápidas? Pregúntale al asistente (abajo a la derecha)</li>
+        </ul>
+      </div>
       <form id="form-contacto" class="form" novalidate>
         <input type="checkbox" name="botcheck" class="oculto-bot" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="campo">
@@ -215,8 +279,9 @@
   </main>
 
   <footer class="site-footer">
+    <a href="#inicio" class="logo">Yamilet<span>.</span></a>
     <div class="redes">
-      <a href="#contacto">Escríbeme</a><a href="#" data-red="github" hidden>GitHub</a><a href="#" data-red="linkedin" hidden>LinkedIn</a><a href="#" data-red="instagram" hidden>Instagram</a>
+      <a href="#contacto">Escríbeme</a><a href="#" data-red="youtube" hidden>YouTube</a><a href="#" data-red="instagram" hidden>Instagram</a><a href="#" data-red="tiktok" hidden>TikTok</a><a href="#" data-red="linkedin" hidden>LinkedIn</a><a href="#" data-red="github" hidden>GitHub</a>
     </div>
     <p>© <span id="anio"></span> Yamilet Abdalh</p>
   </footer>
@@ -229,5 +294,6 @@
   <script src="conocimiento.js"></script>
   <script src="asistente.js"></script>
   <script src="script.js"></script>
+  <script type="module" src="tres.js"></script>
 </body>
 </html>
