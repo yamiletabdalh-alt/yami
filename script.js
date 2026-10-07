@@ -429,6 +429,21 @@ document.querySelectorAll(".site-footer .redes a[data-red]").forEach(function (a
   else a.remove();
 });
 
+// Pie: email de contacto y portal de clientes (Stripe) si están en config.js
+var enlaceEmail = document.getElementById("enlace-email");
+if (enlaceEmail && cfg.email) {
+  enlaceEmail.href = "mailto:" + cfg.email;
+  enlaceEmail.textContent = cfg.email;
+  enlaceEmail.hidden = false;
+}
+var enlacePortal = document.getElementById("enlace-portal");
+if (enlacePortal && cfg.portalClientes) {
+  enlacePortal.href = cfg.portalClientes;
+  enlacePortal.target = "_blank";
+  enlacePortal.rel = "noopener";
+  enlacePortal.hidden = false;
+}
+
 // ===== Botón "volver arriba" =====
 var arriba = document.getElementById("arriba");
 addEventListener("scroll", function () {

@@ -43,6 +43,11 @@ window.PORTFOLIO_CONFIG = {
   /* --- PAGOS ONLINE (Stripe Payment Links) -----------------------
      Pega aquí el enlace de cada plan (https://buy.stripe.com/...).
      Si un plan queda "", su botón "Empezar" lleva al formulario.   */
+  /* Portal de clientes de Stripe (para que cancelen o cambien de
+     tarjeta solos). Stripe -> Configuración -> Facturación ->
+     Portal de clientes -> copia el enlace "billing.stripe.com/p/login/...". */
+  portalClientes: "",
+
   pagos: {
     esencial: "https://buy.stripe.com/test_bJedRafou4Jf57h9b73cc00",
     negocio:  "https://buy.stripe.com/test_4gM28s2BIfnT2Z98733cc01",

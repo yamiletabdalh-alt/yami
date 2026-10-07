@@ -726,6 +726,20 @@ main { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem; }
 .site-footer .redes a { color: var(--muted); text-decoration: none; font-weight: 500; }
 .site-footer .redes a:hover { color: var(--accent); }
 
+.site-footer .legales { display: flex; gap: 1.1rem; justify-content: center; flex-wrap: wrap; font-size: 0.82rem; }
+.site-footer .legales a { color: var(--muted); }
+.site-footer .legales a:hover { color: var(--accent); }
+
+/* ===== Páginas legales ===== */
+.legal { max-width: 760px; margin: 0 auto; padding: 3.5rem 1.5rem 4rem; }
+.legal h1 { font-size: clamp(2rem, 5.5vw, 3rem); font-weight: 800; margin: 0.8rem 0 0.4rem; }
+.legal-fecha { color: var(--muted); font-size: 0.88rem; margin-bottom: 2rem; }
+.legal h2 { font-size: 1.25rem; margin: 2rem 0 0.6rem; }
+.legal p, .legal li { color: var(--muted); }
+.legal b { color: var(--text); }
+.legal ul { padding-left: 1.2rem; display: grid; gap: 0.45rem; }
+.legal-volver { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 2.5rem; }
+
 /* ===== Aparición al hacer scroll ===== */
 .reveal { opacity: 0; translate: 0 26px; }
 .reveal.dentro { opacity: 1; translate: none; }
