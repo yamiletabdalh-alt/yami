@@ -1,48 +1,30 @@
 /* =====================================================================
-   INFORME DIARIO DE LA WEB  ->  email
+   INFORME DIARIO DE LA WEB
    ---------------------------------------------------------------------
-   Función HTTP normal. El "cada día" lo dispara GitHub Actions
-   (.github/workflows/informe-diario.yml). Probar abriendo:
+   Función HTTP normal que devuelve el resumen de visitas en texto.
+   El "cada día" lo dispara GitHub Actions (.github/workflows/informe-diario.yml),
+   que publica el resumen como comentario en el repositorio de GitHub y
+   te menciona: GitHub te avisa por email y en la app del móvil.
+   Probar abriendo:
      https://yamilet-abdalh-web.netlify.app/.netlify/functions/informe-diario
+
+   (Antes se enviaba con Web3Forms, pero Web3Forms bloquea los envíos
+   hechos desde servidores con una comprobación de Cloudflare.)
 
    Los números salen del contador propio (netlify/functions/contar-visita.mjs,
    guardado en Netlify Blobs) — no hace falta ninguna clave externa.
 
    Variable de entorno opcional en Netlify:
-     WEB3FORMS_KEY   -> por defecto usa la del formulario de contacto
      INFORME_TOKEN   -> si lo defines, hay que llamar con ?t=ESE_VALOR
    ===================================================================== */
 import { getStore } from "@netlify/blobs";
 
-const limpio = (v) => (v || "").trim().replace(/^["']|["']$/g, "");
-const WEB3_KEY = limpio(process.env.WEB3FORMS_KEY) || "dcff39c2-5260-45ca-9d30-d985e128da88";
 const SITIO = "https://yamilet-abdalh-web.netlify.app";
 
 function fechaISO(diasAtras) {
   const d = new Date();
   d.setUTCDate(d.getUTCDate() - diasAtras);
   return d.toISOString().slice(0, 10); // YYYY-MM-DD
-}
-
-async function enviarEmail(asunto, texto) {
-  const r = await fetch("https://api.web3forms.com/submit", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Origin: SITIO, Referer: SITIO + "/" },
-    body: JSON.stringify({
-      access_key: WEB3_KEY,
-      subject: asunto,
-      from_name: "Informe de tu web",
-      email: "informe@yamilet-abdalh-web.netlify.app",
-      message: texto,
-    }),
-  });
-  const cuerpo = await r.text();
-  let j;
-  try { j = JSON.parse(cuerpo); } catch (_) {
-    const titulo = (cuerpo.match(/<title>([^<]*)<\/title>/i) || [])[1] || cuerpo.slice(0, 150);
-    throw new Error(`Web3Forms respondió ${r.status} con una página, no con datos: "${titulo.trim()}"`);
-  }
-  if (!j.success) throw new Error("Web3Forms: " + (j.message || "no se pudo enviar"));
 }
 
 export default async (req) => {
@@ -87,10 +69,7 @@ de Cloudflare Web Analytics.
 
 ${SITIO}`;
 
-    await enviarEmail("📊 Informe diario de tu web", msg);
-    return new Response("Informe enviado por email.\n\n" + msg, {
-      headers: { "Content-Type": "text/plain; charset=utf-8" },
-    });
+    return new Response(msg, { headers: { "Content-Type": "text/plain; charset=utf-8" } });
   } catch (e) {
     return new Response("No se pudo generar el informe:\n" + e.message, { status: 500 });
   }

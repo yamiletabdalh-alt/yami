@@ -2,18 +2,41 @@ name: Informe diario de la web
 
 on:
   schedule:
-    - cron: "0 7 * * *"   # 07:00 UTC cada día (Google/GitHub usan hora UTC)
+    - cron: "0 7 * * *"   # 07:00 UTC cada día (GitHub a veces lo lanza con algo de retraso)
   workflow_dispatch: {}     # botón para lanzarlo a mano desde la pestaña Actions
+  push:
+    paths: [".github/workflows/informe-diario.yml"]   # prueba al cambiar este archivo
+
+# Permiso para publicar el informe como comentario en "Issues"
+permissions:
+  issues: write
 
 jobs:
   enviar-informe:
     runs-on: ubuntu-latest
     steps:
-      - name: Llamar a la función de informe
+      - name: Pedir el informe a la web
         run: |
-          curl -sS --retry 2 --retry-delay 10 \
-            "https://yamilet-abdalh-web.netlify.app/.netlify/functions/informe-diario${INFORME_QS}" || true
+          curl -sS --fail --retry 6 --retry-delay 15 --retry-all-errors \
+            "https://yamilet-abdalh-web.netlify.app/.netlify/functions/informe-diario${INFORME_QS}" \
+            -o informe.txt
+          cat informe.txt
         env:
           # Si defines INFORME_TOKEN en Netlify, añade también el secreto
           # INFORME_TOKEN en GitHub (Settings -> Secrets -> Actions) y esto lo usará.
           INFORME_QS: ${{ secrets.INFORME_TOKEN && format('?t={0}', secrets.INFORME_TOKEN) || '' }}
+
+      - name: Publicarlo en GitHub (te llega aviso por email y al móvil)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          DUENA: ${{ github.repository_owner }}
+        run: |
+          gh label create informe-diario --color 5319e7 --description "Informe diario de visitas" --force
+          { echo "@$DUENA aquí tienes el informe de hoy 👇"; echo; echo '```'; cat informe.txt; echo '```'; } > cuerpo.md
+          NUM=$(gh issue list --label informe-diario --state open --json number --jq '.[0].number // empty')
+          if [ -z "$NUM" ]; then
+            gh issue create --title "📊 Informe diario de visitas" --label informe-diario --body-file cuerpo.md
+          else
+            gh issue comment "$NUM" --body-file cuerpo.md
+          fi
