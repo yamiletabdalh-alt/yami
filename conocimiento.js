@@ -22,6 +22,15 @@ auditoría, plan de contenidos, diseño de publicaciones y programación
 atención al cliente y automatización de contenidos.
 Trabaja en remoto con clientes de cualquier país.
 
+PROYECTOS REALES (está empezando y aún no tiene casos de clientes publicados;
+no inventes clientes, cifras ni resultados):
+- Su propia web profesional (esta), con planes de pago online, formulario y SEO.
+- El asistente con IA de esta web (tú mismo).
+- Un informe diario automático de visitas que le llega por email.
+- La marca y el lanzamiento de su canal «Redes con IA» (YouTube e Instagram).
+- Una web con reservas para terapeutas, en desarrollo: busca sus primeros casos
+  con condiciones especiales de lanzamiento.
+
 PLANES MENSUALES en dólares (cuota pequeña, sin permanencia, alta $0):
 - Esencial: $15/mes. Web de 1 página siempre al día, hosting y dominio
   gestionados, 1 cambio de contenido al mes, soporte por email en 48 h.
@@ -66,16 +75,16 @@ CÓMO CONTACTAR: desde el formulario de contacto de la propia web. Respuesta en 
       respuesta: "Hace identidad visual completa: logo, colores, tipografías y plantillas para redes y documentos, con un manual de marca sencillo para que el equipo publique sin diseñar de cero." },
 
     { claves: ["redes", "instagram", "tiktok", "community", "contenido", "publicaciones", "seguidores"],
-      respuesta: "Gestiona y optimiza redes sociales: auditoría de la cuenta, plan de contenidos, diseño de publicaciones y programación. En un caso real, +120 % de alcance y +38 % de seguidores en 3 meses." },
+      respuesta: "Gestiona y optimiza redes sociales: auditoría de la cuenta, plan de contenidos, diseño de publicaciones y programación. Ahora mismo lo aplica en su propio canal, «Redes con IA»." },
 
     { claves: ["ia", "inteligencia artificial", "chatbot", "asistente", "automatizar", "automatización", "chatgpt", "claude"],
-      respuesta: "Integra IA en proyectos reales: asistentes para atención al cliente conectados a tu información, y automatización de contenidos (por ejemplo, de notas de voz a borradores de artículo)." },
+      respuesta: "Integra IA para negocios: asistentes de atención al cliente conectados a tu información (como este mismo chat, que lo montó ella) y automatizaciones, como el informe diario de visitas que le llega por email." },
 
     { claves: ["terapia", "psicología", "psicologia", "consulta", "paciente", "sesión", "terapeuta"],
-      respuesta: "Trabaja mucho con profesionales del bienestar: webs claras sobre el enfoque terapéutico, reserva de sesiones online con recordatorios y material digital para pacientes." },
+      respuesta: "Ofrece a profesionales del bienestar webs claras sobre su enfoque terapéutico, con reserva de sesiones online y recordatorios. Está buscando sus primeros casos con condiciones especiales de lanzamiento." },
 
     { claves: ["reserva", "citas", "agenda", "calendario", "booking"],
-      respuesta: "Desarrolla sistemas de reservas con confirmación y recordatorios automáticos. Una consulta de psicología redujo un 50 % las ausencias con uno de ellos." },
+      respuesta: "Desarrolla sistemas de reservas con confirmación y recordatorios automáticos, para que las citas no se pierdan por WhatsApp." },
 
     { claves: ["contacto", "hablar", "llamada", "reunión", "cita", "empezar", "contratar"],
       respuesta: "Escríbele desde el formulario de contacto de esta misma página y te responde en menos de 24 h. La primera llamada de 20 minutos es gratis." }

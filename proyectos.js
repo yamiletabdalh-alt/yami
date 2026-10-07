@@ -5,6 +5,10 @@
    los tuyos reales. Borra los que no quieras. El orden aquí es el
    orden en que se muestran.
 
+   IMPORTANTE: aquí solo van trabajos que existen de verdad. Cuando
+   tengas tu primer cliente, añade su ficha arriba del todo (con su
+   permiso para nombrarlo, o anonimizado: "Consulta de psicología").
+
    categoria: define en qué filtro aparece. Valores posibles:
      "diseno"   -> Diseño
      "terapias" -> Terapias / bienestar
@@ -15,124 +19,94 @@
 window.PROYECTOS = [
 
   {
-    icono: "🎨",
+    icono: "🌐",
     categoria: "diseno",
-    titulo: "Identidad visual para un centro de bienestar",
-    cliente: "Centro de bienestar",
-    sector: "Salud",
-    anio: 2025,
-    desc: "Logo, paleta de color, tipografías y plantillas listas para redes, carteles y documentos de consulta.",
-    problema: "La marca se veía distinta en la web, en los carteles y en Instagram; no había coherencia.",
-    solucion: "Creé un manual de marca sencillo y un juego de plantillas editables para que el equipo publique sin diseñar de cero.",
-    rol: "Dirección de arte y diseño",
-    stack: ["Figma", "Illustrator", "Canva"],
-    resultado: "Imagen coherente en todos los canales y horas menos de trabajo al publicar",
+    titulo: "Mi web profesional, de cero a publicada",
+    cliente: "Proyecto propio",
+    sector: "Servicios digitales",
+    anio: 2026,
+    desc: "Esta misma web: proyectos filtrables, planes mensuales con pago online, formulario de contacto y preparada para aparecer en Google.",
+    problema: "Necesitaba un escaparate profesional para mostrar mis servicios y captar clientes sin depender solo de las redes.",
+    solucion: "Diseñé la estructura y los textos, monté los planes de suscripción con Stripe, el formulario que llega a mi correo y la configuración para Google (Search Console, sitemap).",
+    rol: "Dirección del proyecto, diseño y contenido, con desarrollo asistido por IA",
+    stack: ["HTML", "CSS", "JavaScript", "Netlify", "Stripe"],
+    resultado: "Web publicada 24/7, rápida y verificada en Google Search Console",
     destacado: true
-  },
-
-  {
-    icono: "💍",
-    categoria: "diseno",
-    titulo: "Rediseño de la web de una taller de joyería",
-    cliente: "Taller de joyería",
-    sector: "Moda y complementos",
-    anio: 2024,
-    desc: "Web-catálogo con estética editorial, fichas de producto centradas en la fotografía y carga muy rápida.",
-    problema: "La web antigua era lenta y no transmitía el nivel artesanal del producto.",
-    solucion: "Rediseño con tipografía de contraste, mucho aire, imágenes optimizadas y una navegación mínima.",
-    rol: "Diseño de interfaz y maquetación",
-    stack: ["Figma", "HTML", "CSS"],
-    resultado: "+45 % de tiempo de permanencia en las fichas de producto"
-  },
-
-  {
-    icono: "🌿",
-    categoria: "terapias",
-    titulo: "Web y reservas para una consulta de psicología",
-    cliente: "Psicóloga colegiada",
-    sector: "Salud mental",
-    anio: 2025,
-    desc: "Web informativa sobre el enfoque terapéutico, con reserva de sesión online y primera consulta gratuita.",
-    problema: "Las reservas llegaban por WhatsApp, se perdían citas y quedaban huecos sin cubrir.",
-    solucion: "Página clara y cercana + agenda con confirmación automática y recordatorio 24 h antes.",
-    rol: "Diseño y desarrollo",
-    stack: ["HTML", "CSS", "JavaScript", "Cal.com"],
-    resultado: "−50 % de ausencias y agenda completa con 3 semanas de antelación"
-  },
-
-  {
-    icono: "📔",
-    categoria: "terapias",
-    titulo: "Material digital para terapia entre sesiones",
-    cliente: "Terapeuta ocupacional",
-    sector: "Rehabilitación",
-    anio: 2024,
-    desc: "Cuadernos de ejercicios interactivos y una zona privada donde el paciente los completa entre sesiones.",
-    problema: "Los ejercicios en papel se perdían y no había forma de ver si se hacían.",
-    solucion: "Fichas rellenables y un panel donde la terapeuta ve el progreso de cada paciente.",
-    rol: "Diseño de material y desarrollo",
-    stack: ["Figma", "HTML", "CSS", "JavaScript"],
-    resultado: "Más constancia con los ejercicios y sesiones mejor aprovechadas"
-  },
-
-  {
-    icono: "📱",
-    categoria: "redes",
-    titulo: "Optimización de Instagram para un estudio de yoga",
-    cliente: "Estudio de yoga",
-    sector: "Bienestar",
-    anio: 2025,
-    desc: "Auditoría de la cuenta, nuevas líneas de contenido, calendario mensual y plantillas de reels reutilizables.",
-    problema: "Publicaban sin plan y el alcance llevaba meses estancado.",
-    solucion: "Definí temáticas fijas, un calendario realista y guiones de reels que el equipo puede repetir.",
-    rol: "Estrategia y diseño de contenido",
-    stack: ["Metricool", "Canva", "CapCut"],
-    resultado: "+120 % de alcance y +38 % de seguidores en 3 meses"
-  },
-
-  {
-    icono: "✨",
-    categoria: "redes",
-    titulo: "Gestión de redes de una marca de cosmética natural",
-    cliente: "Marca de cosmética",
-    sector: "Comercio",
-    anio: 2024,
-    desc: "Plan de contenidos, diseño de publicaciones, textos y programación semanal en Instagram y TikTok.",
-    problema: "No tenían tiempo ni criterio para publicar con constancia.",
-    solucion: "Me encargo del ciclo completo: idea, diseño, copy y programación, con revisión mensual de resultados.",
-    rol: "Community management y diseño",
-    stack: ["Meta Business Suite", "Canva", "Notion"],
-    resultado: "Publicación constante y +25 % de tráfico a la tienda desde redes"
   },
 
   {
     icono: "🤖",
     categoria: "ia",
-    titulo: "Asistente con IA para atención al cliente",
-    cliente: "Tienda online",
-    sector: "Comercio",
-    anio: 2025,
-    desc: "Chat en la web que responde dudas de pedidos, envíos y devoluciones con la información real de la tienda.",
-    problema: "El 60 % de los mensajes de soporte eran preguntas repetidas.",
-    solucion: "Conecté un asistente con IA a su base de conocimiento, con paso a una persona cuando hace falta.",
-    rol: "Integración y ajuste de instrucciones",
+    titulo: "Asistente con IA que atiende a mis visitantes",
+    cliente: "Proyecto propio",
+    sector: "Atención al cliente",
+    anio: 2026,
+    desc: "El chat de esta web: responde al momento dudas sobre servicios, precios, plazos y forma de trabajo. Pruébalo abajo a la derecha.",
+    problema: "Muchas preguntas se repiten y un cliente que no recibe respuesta rápida se va a otra web.",
+    solucion: "Escribí una base de conocimiento con mi información real y la conecté a Claude para que responda preguntas abiertas sin inventar, y que derive al formulario lo que no sabe.",
+    rol: "Diseño de la base de conocimiento, instrucciones e integración",
     stack: ["JavaScript", "API de Claude", "Netlify Functions"],
-    resultado: "−55 % de consultas de primer nivel y respuestas 24/7"
+    resultado: "Respuestas al instante, de día y de noche, sin que yo tenga que estar conectada"
   },
 
   {
-    icono: "⚡",
+    icono: "📊",
     categoria: "ia",
-    titulo: "Automatización de contenidos con IA para un blog",
-    cliente: "Consultora",
-    sector: "Servicios profesionales",
-    anio: 2024,
-    desc: "Flujo que convierte notas de voz en borradores de artículo estructurados y con el tono de la marca.",
-    problema: "Tenían ideas constantemente, pero nunca tiempo de sentarse a redactar.",
-    solucion: "Monté un flujo que transcribe, ordena las ideas y redacta un primer borrador listo para revisar.",
-    rol: "Diseño del flujo y de las instrucciones",
-    stack: ["Whisper", "API de Claude", "Make"],
-    resultado: "De 1 artículo al mes a 1 por semana"
+    titulo: "Informe diario automático de visitas",
+    cliente: "Proyecto propio",
+    sector: "Automatización",
+    anio: 2026,
+    desc: "Un contador de visitas propio y una tarea programada que cada mañana me envía por email cuánta gente entró ayer y en la última semana.",
+    problema: "Quería saber si la web funciona sin tener que entrar cada día a un panel de estadísticas.",
+    solucion: "Cada visita suma en un contador guardado en la nube, y un proceso automático programado a diario prepara el resumen y me lo manda al correo.",
+    rol: "Diseño de la automatización",
+    stack: ["Netlify Functions", "Netlify Blobs", "GitHub Actions", "Cloudflare Analytics"],
+    resultado: "Seguimiento diario de la web sin hacer nada a mano"
+  },
+
+  {
+    icono: "🎨",
+    categoria: "diseno",
+    titulo: "Identidad visual de «Redes con IA»",
+    cliente: "Proyecto propio",
+    sector: "Creación de contenido",
+    anio: 2026,
+    desc: "Logo y banner del canal: degradado morado, rosa y naranja, texto amarillo con brillo e iconos de play, chat y corazón.",
+    problema: "Un canal nuevo necesita reconocerse a primera vista y verse igual en todas las plataformas.",
+    solucion: "Definí una paleta vibrante y un logo cuadrado que funciona como foto de perfil, marca de agua y banner a la vez.",
+    rol: "Dirección de arte y diseño",
+    stack: ["Canva"],
+    resultado: "Una sola imagen de marca para YouTube e Instagram"
+  },
+
+  {
+    icono: "📱",
+    categoria: "redes",
+    titulo: "Lanzamiento del canal «Redes con IA»",
+    cliente: "Proyecto propio",
+    sector: "Redes sociales",
+    anio: 2026,
+    desc: "Mi canal sobre redes sociales e IA: estrategia, perfiles en YouTube e Instagram, calendario de publicación y guiones de los primeros vídeos.",
+    problema: "Empezar en redes sin plan suele acabar en publicar sin constancia y abandonar a las pocas semanas.",
+    solucion: "Definí los temas fijos del canal, un calendario realista, el guion del primer vídeo y su versión corta (short), y unifiqué nombre y marca en todas las plataformas.",
+    rol: "Estrategia, contenido y diseño",
+    stack: ["YouTube Studio", "Instagram", "Canva", "Claude"],
+    resultado: "Canal y perfiles creados, con el plan de contenidos en marcha"
+  },
+
+  {
+    icono: "🌿",
+    categoria: "terapias",
+    titulo: "Web con reservas para terapeutas",
+    cliente: "Proyecto en desarrollo",
+    sector: "Bienestar",
+    anio: 2026,
+    desc: "Una web cercana para presentar tu enfoque terapéutico, con agenda online, confirmación automática y recordatorio antes de cada sesión.",
+    problema: "Muchas consultas gestionan las citas por WhatsApp: se pierden mensajes, hay ausencias y huecos sin cubrir.",
+    solucion: "Estoy preparando una base adaptable para terapeutas y la quiero construir junto a mis primeras clientas, con condiciones especiales de lanzamiento.",
+    rol: "Diseño y desarrollo",
+    stack: ["HTML", "CSS", "JavaScript", "Agenda online"],
+    resultado: "¿Eres terapeuta? Escríbeme y sé uno de los primeros casos"
   }
 
 ];

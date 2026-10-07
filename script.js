@@ -135,12 +135,15 @@ document.getElementById("filtros").addEventListener("click", function (e) {
 pintarProyectos("todos");
 
 // ===== Opiniones =====
+// Solo reseñas reales, con permiso del cliente. Mientras esté vacío,
+// la sección "Opiniones" y su enlace del menú se ocultan solos.
+// Formato: { texto: "...", nombre: "Nombre o tipo de cliente", rol: "Sector" },
 var opiniones = [
-  { texto: "Nos hizo la identidad completa y ahora la marca se ve coherente en la web y en redes.", nombre: "Ana Torres", rol: "Centro de bienestar" },
-  { texto: "La web y la agenda me quitaron el lío de reservar por WhatsApp. Ahora todo va solo.", nombre: "Psicóloga colegiada", rol: "Consulta privada" },
-  { texto: "En tres meses el alcance de Instagram se disparó y por fin publico con un plan.", nombre: "Estudio de yoga", rol: "Bienestar" },
-  { texto: "El asistente con IA responde el 60 % de las consultas de la tienda. Un cambio enorme.", nombre: "Sergio Pardo", rol: "Tienda online" },
 ];
+if (!opiniones.length) {
+  document.getElementById("opiniones").style.display = "none";
+  document.querySelectorAll('a[href="#opiniones"]').forEach(function (a) { a.style.display = "none"; });
+}
 document.getElementById("lista-opiniones").innerHTML = opiniones
   .map(function (o) {
     var ini = o.nombre.split(" ").map(function (x) { return x[0]; }).slice(0, 2).join("");
