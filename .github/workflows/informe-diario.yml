@@ -2,7 +2,7 @@ name: Informe diario de la web
 
 on:
   schedule:
-    - cron: "0 7 * * *"   # 07:00 UTC cada día (GitHub a veces lo lanza con algo de retraso)
+    - cron: "0 11 * * *"  # 11:00 UTC = 7:00 en Nueva York (GitHub a veces lo lanza con algo de retraso)
   workflow_dispatch: {}     # botón para lanzarlo a mano desde la pestaña Actions
   push:
     paths: [".github/workflows/informe-diario.yml"]   # prueba al cambiar este archivo
@@ -33,7 +33,7 @@ jobs:
           DUENA: ${{ github.repository_owner }}
         run: |
           gh label create informe-diario --color 5319e7 --description "Informe diario de visitas" --force
-          { echo "@$DUENA aquí tienes el informe de hoy 👇"; echo; echo '```'; cat informe.txt; echo '```'; } > cuerpo.md
+          { echo "@$DUENA aquí tienes el informe de hoy 👇"; echo; echo '```'; cat informe.txt; echo; echo '```'; } > cuerpo.md
           NUM=$(gh issue list --label informe-diario --state open --json number --jq '.[0].number // empty')
           if [ -z "$NUM" ]; then
             gh issue create --title "📊 Informe diario de visitas" --label informe-diario --body-file cuerpo.md
