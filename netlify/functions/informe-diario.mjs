@@ -36,7 +36,12 @@ async function enviarEmail(asunto, texto) {
       message: texto,
     }),
   });
-  const j = await r.json();
+  const cuerpo = await r.text();
+  let j;
+  try { j = JSON.parse(cuerpo); } catch (_) {
+    const titulo = (cuerpo.match(/<title>([^<]*)<\/title>/i) || [])[1] || cuerpo.slice(0, 150);
+    throw new Error(`Web3Forms respondió ${r.status} con una página, no con datos: "${titulo.trim()}"`);
+  }
   if (!j.success) throw new Error("Web3Forms: " + (j.message || "no se pudo enviar"));
 }
 
